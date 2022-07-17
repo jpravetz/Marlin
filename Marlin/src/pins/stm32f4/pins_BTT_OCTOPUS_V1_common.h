@@ -322,6 +322,7 @@
 #endif
 
 /**               ------                                      ------
+<<<<<<< HEAD
  * (BEEPER) PE8  |10  9 | PE7  (BTN_ENC)         (MISO) PA6  |10  9 | PA5  (SCK)
  * (LCD_EN) PE9  | 8  7 | PE10 (LCD_RS)       (BTN_EN1) PB2  | 8  7 | PA4  (SD_SS)
  * (LCD_D4) PE12   6  5 | PE13 (LCD_D5)       (BTN_EN2) PB1    6  5 | PA7  (MOSI)
@@ -347,6 +348,33 @@
 #define EXP2_08_PIN                         PB1
 #define EXP2_09_PIN                         PA5
 #define EXP2_10_PIN                         PA6
+=======
+ * (BEEPER) PE8  | 1  2 | PE7  (BTN_ENC)         (MISO) PA6  | 1  2 | PA5  (SCK)
+ * (LCD_EN) PE9  | 3  4 | PE10 (LCD_RS)       (BTN_EN1) PB2  | 3  4 | PA4  (SD_SS)
+ * (LCD_D4) PE12   5  6 | PE13 (LCD_D5)       (BTN_EN2) PB1    5  6 | PA7  (MOSI)
+ * (LCD_D6) PE14 | 7  8 | PE15 (LCD_D7)     (SD_DETECT) PC15 | 7  8 | RESET
+ *           GND | 9 10 | 5V                             GND | 9 10 | --
+ *                ------                                      ------
+ *                 EXP1                                        EXP2
+ */
+#define EXP1_08_PIN                         PE15
+#define EXP1_07_PIN                         PE14
+#define EXP1_06_PIN                         PE13
+#define EXP1_05_PIN                         PE12
+#define EXP1_04_PIN                         PE10
+#define EXP1_03_PIN                         PE9
+#define EXP1_02_PIN                         PE7
+#define EXP1_01_PIN                         PE8
+
+#define EXP2_08_PIN                         -1
+#define EXP2_07_PIN                         PC15
+#define EXP2_06_PIN                         PA7
+#define EXP2_05_PIN                         PB2
+#define EXP2_04_PIN                         PA4
+#define EXP2_03_PIN                         PB1
+#define EXP2_02_PIN                         PA5
+#define EXP2_01_PIN                         PA6
+>>>>>>> bugfix-2.1.x
 
 //
 // Onboard SD card
@@ -376,16 +404,25 @@
 #if ENABLED(BTT_MOTOR_EXPANSION)
   /**
    *         ------                  ------
+<<<<<<< HEAD
    * M3DIAG |10  9 | M3RX     M3STP |10  9 | M3DIR
    * M2DIAG | 8  7 | M2RX     M2STP | 8  7 | M2DIR
    * M1DIAG   6  5 | M1RX     M1DIR   6  5 | M1STP
    *   M3EN | 4  3 | M2EN      M1EN | 4  3 | --
    *    GND | 2  1 | --         GND | 2  1 | --
+=======
+   * M3DIAG | 1  2 | M3RX     M3STP | 1  2 | M3DIR
+   * M2DIAG | 3  4 | M2RX     M2STP | 3  4 | M2DIR
+   * M1DIAG   5  6 | M1RX     M1DIR   5  6 | M1STP
+   *   M3EN | 7  8 | M2EN      M1EN | 7  8 | --
+   *    GND | 9 10 | --         GND | 9 10 | --
+>>>>>>> bugfix-2.1.x
    *        ------                   ------
    *         EXP1                     EXP2
    */
 
   // M1 on Driver Expansion Module
+<<<<<<< HEAD
   #define E4_STEP_PIN                EXP2_05_PIN
   #define E4_DIR_PIN                 EXP2_06_PIN
   #define E4_ENABLE_PIN              EXP2_04_PIN
@@ -393,10 +430,20 @@
   #define E4_CS_PIN                  EXP1_05_PIN
   #if HAS_TMC_UART
     #define E4_SERIAL_TX_PIN         EXP1_05_PIN
+=======
+  #define E4_STEP_PIN                EXP2_06_PIN
+  #define E4_DIR_PIN                 EXP2_05_PIN
+  #define E4_ENABLE_PIN              EXP2_07_PIN
+  #define E4_DIAG_PIN                EXP1_05_PIN
+  #define E4_CS_PIN                  EXP1_06_PIN
+  #if HAS_TMC_UART
+    #define E4_SERIAL_TX_PIN         EXP1_06_PIN
+>>>>>>> bugfix-2.1.x
     #define E4_SERIAL_RX_PIN    E4_SERIAL_TX_PIN
   #endif
 
   // M2 on Driver Expansion Module
+<<<<<<< HEAD
   #define E5_STEP_PIN                EXP2_08_PIN
   #define E5_DIR_PIN                 EXP2_07_PIN
   #define E5_ENABLE_PIN              EXP1_03_PIN
@@ -404,10 +451,20 @@
   #define E5_CS_PIN                  EXP1_07_PIN
   #if HAS_TMC_UART
     #define E5_SERIAL_TX_PIN         EXP1_07_PIN
+=======
+  #define E5_STEP_PIN                EXP2_03_PIN
+  #define E5_DIR_PIN                 EXP2_04_PIN
+  #define E5_ENABLE_PIN              EXP1_08_PIN
+  #define E5_DIAG_PIN                EXP1_03_PIN
+  #define E5_CS_PIN                  EXP1_04_PIN
+  #if HAS_TMC_UART
+    #define E5_SERIAL_TX_PIN         EXP1_04_PIN
+>>>>>>> bugfix-2.1.x
     #define E5_SERIAL_RX_PIN    E5_SERIAL_TX_PIN
   #endif
 
   // M3 on Driver Expansion Module
+<<<<<<< HEAD
   #define E6_STEP_PIN                EXP2_10_PIN
   #define E6_DIR_PIN                 EXP2_09_PIN
   #define E6_ENABLE_PIN              EXP1_04_PIN
@@ -415,6 +472,15 @@
   #define E6_CS_PIN                  EXP1_09_PIN
   #if HAS_TMC_UART
     #define E6_SERIAL_TX_PIN         EXP1_09_PIN
+=======
+  #define E6_STEP_PIN                EXP2_01_PIN
+  #define E6_DIR_PIN                 EXP2_02_PIN
+  #define E6_ENABLE_PIN              EXP1_07_PIN
+  #define E6_DIAG_PIN                EXP1_01_PIN
+  #define E6_CS_PIN                  EXP1_02_PIN
+  #if HAS_TMC_UART
+    #define E6_SERIAL_TX_PIN         EXP1_02_PIN
+>>>>>>> bugfix-2.1.x
     #define E6_SERIAL_RX_PIN    E6_SERIAL_TX_PIN
   #endif
 
@@ -426,11 +492,16 @@
 #if IS_TFTGLCD_PANEL
 
   #if ENABLED(TFTGLCD_PANEL_SPI)
+<<<<<<< HEAD
     #define TFTGLCD_CS               EXP2_08_PIN
+=======
+    #define TFTGLCD_CS               EXP2_03_PIN
+>>>>>>> bugfix-2.1.x
   #endif
 
 #elif HAS_WIRED_LCD
 
+<<<<<<< HEAD
   #define BEEPER_PIN                 EXP1_10_PIN
   #define BTN_ENC                    EXP1_09_PIN
 
@@ -450,10 +521,22 @@
 
     #define BTN_EN1                  EXP2_08_PIN
     #define BTN_EN2                  EXP2_06_PIN
+=======
+  #define BEEPER_PIN                 EXP1_01_PIN
+  #define BTN_ENC                    EXP1_02_PIN
+
+  #if ENABLED(CR10_STOCKDISPLAY)
+
+    #define LCD_PINS_RS              EXP1_07_PIN
+
+    #define BTN_EN1                  EXP1_03_PIN
+    #define BTN_EN2                  EXP1_05_PIN
+>>>>>>> bugfix-2.1.x
 
     #define LCD_PINS_ENABLE          EXP1_08_PIN
     #define LCD_PINS_D4              EXP1_06_PIN
 
+<<<<<<< HEAD
     #if ENABLED(FYSETC_MINI_12864)
       #define DOGLCD_CS              EXP1_08_PIN
       #define DOGLCD_A0              EXP1_07_PIN
@@ -471,13 +554,48 @@
         #endif
       #elif ENABLED(FYSETC_MINI_12864_2_1)
         #define NEOPIXEL_PIN         EXP1_05_PIN
+=======
+  #else
+
+    #define LCD_PINS_RS              EXP1_04_PIN
+
+    #define BTN_EN1                  EXP2_03_PIN
+    #define BTN_EN2                  EXP2_05_PIN
+
+    #define LCD_PINS_ENABLE          EXP1_03_PIN
+    #define LCD_PINS_D4              EXP1_05_PIN
+
+    #if ENABLED(FYSETC_MINI_12864)
+      #define DOGLCD_CS              EXP1_03_PIN
+      #define DOGLCD_A0              EXP1_04_PIN
+      //#define LCD_BACKLIGHT_PIN           -1
+      #define LCD_RESET_PIN          EXP1_05_PIN  // Must be high or open for LCD to operate normally.
+      #if EITHER(FYSETC_MINI_12864_1_2, FYSETC_MINI_12864_2_0)
+        #ifndef RGB_LED_R_PIN
+          #define RGB_LED_R_PIN      EXP1_06_PIN
+        #endif
+        #ifndef RGB_LED_G_PIN
+          #define RGB_LED_G_PIN      EXP1_07_PIN
+        #endif
+        #ifndef RGB_LED_B_PIN
+          #define RGB_LED_B_PIN      EXP1_08_PIN
+        #endif
+      #elif ENABLED(FYSETC_MINI_12864_2_1)
+        #define NEOPIXEL_PIN         EXP1_06_PIN
+>>>>>>> bugfix-2.1.x
       #endif
     #endif // !FYSETC_MINI_12864
 
     #if IS_ULTIPANEL
+<<<<<<< HEAD
       #define LCD_PINS_D5            EXP1_05_PIN
       #define LCD_PINS_D6            EXP1_04_PIN
       #define LCD_PINS_D7            EXP1_03_PIN
+=======
+      #define LCD_PINS_D5            EXP1_06_PIN
+      #define LCD_PINS_D6            EXP1_07_PIN
+      #define LCD_PINS_D7            EXP1_08_PIN
+>>>>>>> bugfix-2.1.x
 
       #if ENABLED(REPRAP_DISCOUNT_FULL_GRAPHIC_SMART_CONTROLLER)
         #define BTN_ENC_EN           LCD_PINS_D7  // Detect the presence of the encoder
@@ -496,6 +614,7 @@
 #endif
 
 #if HAS_SPI_TFT
+<<<<<<< HEAD
   #define TFT_CS_PIN                 EXP2_07_PIN
   #define TFT_A0_PIN                 EXP2_04_PIN
   #define TFT_SCK_PIN                EXP2_09_PIN
@@ -511,6 +630,23 @@
   #define BTN_EN1                    EXP2_08_PIN
   #define BTN_EN2                    EXP2_06_PIN
   #define BTN_ENC                    EXP1_09_PIN
+=======
+  #define TFT_CS_PIN                 EXP2_04_PIN
+  #define TFT_A0_PIN                 EXP2_07_PIN
+  #define TFT_SCK_PIN                EXP2_02_PIN
+  #define TFT_MISO_PIN               EXP2_01_PIN
+  #define TFT_MOSI_PIN               EXP2_06_PIN
+
+  #define TOUCH_INT_PIN              EXP1_07_PIN
+  #define TOUCH_MISO_PIN             EXP1_06_PIN
+  #define TOUCH_MOSI_PIN             EXP1_03_PIN
+  #define TOUCH_SCK_PIN              EXP1_05_PIN
+  #define TOUCH_CS_PIN               EXP1_04_PIN
+
+  #define BTN_EN1                    EXP2_03_PIN
+  #define BTN_EN2                    EXP2_05_PIN
+  #define BTN_ENC                    EXP1_02_PIN
+>>>>>>> bugfix-2.1.x
 #endif
 
 //

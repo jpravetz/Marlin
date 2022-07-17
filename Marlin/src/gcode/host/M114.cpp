@@ -28,12 +28,15 @@
 
 #if ENABLED(M114_DETAIL)
 
+<<<<<<< HEAD
   #if HAS_L64XX
     #include "../../libs/L64XX/L64XX_Marlin.h"
     #define DEBUG_OUT ENABLED(L6470_CHITCHAT)
     #include "../../core/debug_out.h"
   #endif
 
+=======
+>>>>>>> bugfix-2.1.x
   void report_all_axis_pos(const xyze_pos_t &pos, const uint8_t n=LOGICAL_AXES, const uint8_t precision=3) {
     char str[12];
     LOOP_L_N(a, n) {
@@ -84,6 +87,7 @@
 
     planner.synchronize();
 
+<<<<<<< HEAD
     #if HAS_L64XX
       char temp_buf[80];
       int32_t temp;
@@ -167,6 +171,8 @@
       SERIAL_EOL();
     #endif // HAS_L64XX
 
+=======
+>>>>>>> bugfix-2.1.x
     SERIAL_ECHOPGM("Stepper:");
     LOOP_LOGICAL_AXES(i) {
       SERIAL_ECHOPGM_P((PGM_P)pgm_read_ptr(&SP_AXIS_LBL[i]), stepper.position((AxisEnum)i));

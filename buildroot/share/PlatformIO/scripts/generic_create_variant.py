@@ -21,6 +21,7 @@ if pioutil.is_pio_build():
 
 	from platformio.package.meta import PackageSpec
 	platform_packages = env.GetProjectOption('platform_packages')
+<<<<<<< HEAD
 	if len(platform_packages) == 0:
 		framewords = {
 			"Ststm32Platform": "framework-arduinoststm32",
@@ -53,4 +54,42 @@ if pioutil.is_pio_build():
 	source_dir = os.path.join("buildroot/share/PlatformIO/variants", variant)
 	assert os.path.isdir(source_dir)
 
+=======
+
+	# Remove all tool items from platform_packages
+	platform_packages = [x for x in platform_packages if not x.startswith("platformio/tool-")]
+
+	if len(platform_packages) == 0:
+		framewords = {
+			"Ststm32Platform": "framework-arduinoststm32",
+			"AtmelavrPlatform": "framework-arduino-avr"
+		}
+		platform_name = framewords[platform.__class__.__name__]
+	else:
+		platform_name = PackageSpec(platform_packages[0]).name
+
+	if platform_name in [ "usb-host-msc", "usb-host-msc-cdc-msc", "usb-host-msc-cdc-msc-2", "usb-host-msc-cdc-msc-3", "tool-stm32duino", "biqu-bx-workaround", "main" ]:
+		platform_name = "framework-arduinoststm32"
+
+	FRAMEWORK_DIR = platform.get_package_dir(platform_name)
+	assert os.path.isdir(FRAMEWORK_DIR)
+
+	board = env.BoardConfig()
+
+	#mcu_type = board.get("build.mcu")[:-2]
+	variant = board.get("build.variant")
+	#series = mcu_type[:7].upper() + "xx"
+
+	# Prepare a new empty folder at the destination
+	variant_dir = os.path.join(FRAMEWORK_DIR, "variants", variant)
+	if os.path.isdir(variant_dir):
+		shutil.rmtree(variant_dir)
+	if not os.path.isdir(variant_dir):
+		os.mkdir(variant_dir)
+
+	# Source dir is a local variant sub-folder
+	source_dir = os.path.join("buildroot/share/PlatformIO/variants", variant)
+	assert os.path.isdir(source_dir)
+
+>>>>>>> bugfix-2.1.x
 	marlin.copytree(source_dir, variant_dir)

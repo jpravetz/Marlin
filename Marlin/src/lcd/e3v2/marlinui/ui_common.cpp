@@ -213,7 +213,11 @@ void MarlinUI::draw_status_message(const bool blink) {
         lcd_put_u8str(status_message);
 
         // Fill the rest with spaces
+<<<<<<< HEAD
         while (slen < max_status_chars) { lcd_put_wchar(' '); ++slen; }
+=======
+        while (slen < max_status_chars) { lcd_put_lchar(' '); ++slen; }
+>>>>>>> bugfix-2.1.x
       }
     }
     else {
@@ -227,10 +231,17 @@ void MarlinUI::draw_status_message(const bool blink) {
 
       // If the string doesn't completely fill the line...
       if (rlen < max_status_chars) {
+<<<<<<< HEAD
         lcd_put_wchar('.');                   // Always at 1+ spaces left, draw a dot
         uint8_t chars = max_status_chars - rlen;  // Amount of space left in characters
         if (--chars) {                        // Draw a second dot if there's space
           lcd_put_wchar('.');
+=======
+        lcd_put_lchar('.');                   // Always at 1+ spaces left, draw a dot
+        uint8_t chars = max_status_chars - rlen;  // Amount of space left in characters
+        if (--chars) {                        // Draw a second dot if there's space
+          lcd_put_lchar('.');
+>>>>>>> bugfix-2.1.x
           if (--chars)
             lcd_put_u8str_max(status_message, chars); // Print a second copy of the message
         }
@@ -254,7 +265,11 @@ void MarlinUI::draw_status_message(const bool blink) {
       lcd_put_u8str_max(status_message, max_status_chars);
 
       // Fill the rest with spaces if there are missing spaces
+<<<<<<< HEAD
       while (slen < max_status_chars) { lcd_put_wchar(' '); ++slen; }
+=======
+      while (slen < max_status_chars) { lcd_put_lchar(' '); ++slen; }
+>>>>>>> bugfix-2.1.x
     }
 
   #endif
@@ -410,8 +425,12 @@ void MarlinUI::draw_status_message(const bool blink) {
       const dwin_coord_t by = (row * MENU_LINE_HEIGHT) + MENU_FONT_HEIGHT + EXTRA_ROW_HEIGHT / 2;
       DWIN_Draw_String(true, font16x32, Color_Yellow, Color_Bg_Black, (LCD_PIXEL_WIDTH - vallen * 16) / 2, by, S(dwin_string.string()));
 
+<<<<<<< HEAD
       extern screenFunc_t _manual_move_func_ptr;
       if (ui.currentScreen != _manual_move_func_ptr && !ui.external_control) {
+=======
+      if (ui.can_show_slider()) {
+>>>>>>> bugfix-2.1.x
 
         const dwin_coord_t slider_length = LCD_PIXEL_WIDTH - TERN(DWIN_MARLINUI_LANDSCAPE, 120, 20),
                            slider_height = 16,
@@ -566,7 +585,11 @@ void MarlinUI::draw_status_message(const bool blink) {
 
   #endif // AUTO_BED_LEVELING_UBL
 
+<<<<<<< HEAD
   #if ANY(BABYSTEP_ZPROBE_GFX_OVERLAY, MESH_EDIT_GFX_OVERLAY)
+=======
+  #if EITHER(BABYSTEP_ZPROBE_GFX_OVERLAY, MESH_EDIT_GFX_OVERLAY)
+>>>>>>> bugfix-2.1.x
 
     void MarlinUI::zoffset_overlay(const int8_t dir) {
       const int rot_up = TERN(OVERLAY_GFX_REVERSE, ICON_RotateCCW, ICON_RotateCW),

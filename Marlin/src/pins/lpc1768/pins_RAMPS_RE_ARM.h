@@ -351,7 +351,11 @@
     //#define SHIFT_EN_PIN                 P1_22  // (41)  J5-4 & AUX-4
   #endif
 
+<<<<<<< HEAD
   #if ANY(VIKI2, miniVIKI)
+=======
+  #if EITHER(VIKI2, miniVIKI)
+>>>>>>> bugfix-2.1.x
     #define DOGLCD_CS                      P0_16  // (16)
     #define DOGLCD_A0                      P2_06  // (59) J3-8 & AUX-2
     #define DOGLCD_SCK                SD_SCK_PIN

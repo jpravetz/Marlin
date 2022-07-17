@@ -138,7 +138,11 @@ int lcd_glyph_height();
  *
  * @return the output width (in pixels on GLCD)
  */
+<<<<<<< HEAD
 int lcd_put_wchar_max(const wchar_t c, const pixel_len_t max_length);
+=======
+int lcd_put_lchar_max(const lchar_t &c, const pixel_len_t max_length);
+>>>>>>> bugfix-2.1.x
 
 /**
  * @brief Draw a SRAM UTF-8 string
@@ -267,17 +271,28 @@ inline int lcd_put_u8str(const lcd_uint_t col, const lcd_uint_t row, const char 
 /**
  * @brief Draw a UTF-8 character with no width limit
  *
+<<<<<<< HEAD
  * @param c The wchar to draw
  * @return the output width (in pixels on GLCD)
  */
 inline int lcd_put_wchar(const wchar_t c) { return lcd_put_wchar_max(c, PIXEL_LEN_NOLIMIT); }
+=======
+ * @param c The lchar to draw
+ * @return the output width (in pixels on GLCD)
+ */
+inline int lcd_put_lchar(const lchar_t &c) { return lcd_put_lchar_max(c, PIXEL_LEN_NOLIMIT); }
+>>>>>>> bugfix-2.1.x
 /**
  * @param col
  * @param row
  */
+<<<<<<< HEAD
 inline int lcd_put_wchar(const lcd_uint_t col, const lcd_uint_t row, const wchar_t c) {
+=======
+inline int lcd_put_lchar(const lcd_uint_t col, const lcd_uint_t row, const lchar_t &c) {
+>>>>>>> bugfix-2.1.x
   lcd_moveto(col, row);
-  return lcd_put_wchar(c);
+  return lcd_put_lchar(c);
 }
 
 /**

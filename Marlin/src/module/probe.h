@@ -62,16 +62,24 @@
   #endif
 #endif
 
+#if ENABLED(SENSORLESS_PROBING)
+  extern abc_float_t offset_sensorless_adj;
+#endif
+
 class Probe {
 public:
 
   #if ENABLED(SENSORLESS_PROBING)
     typedef struct {
+<<<<<<< HEAD
       #if HAS_DELTA_SENSORLESS_PROBING
         bool x:1, y:1, z:1;
       #else
         bool z;
       #endif
+=======
+        bool x:1, y:1, z:1;
+>>>>>>> bugfix-2.1.x
     } sense_bool_t;
     static sense_bool_t test_sensitivity;
   #endif
@@ -302,9 +310,13 @@ public:
   #endif
 
   // Basic functions for Sensorless Homing and Probing
+<<<<<<< HEAD
   #if USE_SENSORLESS
     static void enable_stallguard_diag1();
     static void disable_stallguard_diag1();
+=======
+  #if HAS_DELTA_SENSORLESS_PROBING
+>>>>>>> bugfix-2.1.x
     static void set_offset_sensorless_adj(const_float_t sz);
     static void refresh_largest_sensorless_adj();
   #endif

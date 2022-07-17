@@ -135,6 +135,7 @@
 #define LED_PIN                               13
 
 /**        ------                     ------
+<<<<<<< HEAD
  *     37 |10  9 | 35      (MISO) 50 |10  9 | 76 (SCK)
  *     29 | 8  7 | 27       (EN2) 31 | 8  7 |  4 (SD_SS)
  *     25   6  5 | 23       (EN1) 33   6  5 | 75 (MOSI)
@@ -160,6 +161,33 @@
 #define EXP2_08_PIN                           31
 #define EXP2_09_PIN                           76
 #define EXP2_10_PIN                           74
+=======
+ *     37 | 1  2 | 35      (MISO) 50 | 1  2 | 76 (SCK)
+ *     29 | 3  4 | 27       (EN2) 31 | 3  4 |  4 (SD_SS)
+ *     25   5  6 | 23       (EN1) 33   5  6 | 75 (MOSI)
+ *     16 | 7  8 | 17       (SDD) 49 | 7  8 | RESET
+ *    GND | 9 10 | 5V            GND | 9 10 | --
+ *         ------                     ------
+ *          EXP1                       EXP2
+ */
+#define EXP1_08_PIN                           17
+#define EXP1_07_PIN                           16
+#define EXP1_06_PIN                           23
+#define EXP1_05_PIN                           25
+#define EXP1_04_PIN                           27
+#define EXP1_03_PIN                           29
+#define EXP1_02_PIN                           35
+#define EXP1_01_PIN                           37
+
+#define EXP2_08_PIN                           -1
+#define EXP2_07_PIN                           49
+#define EXP2_06_PIN                           75
+#define EXP2_05_PIN                           33
+#define EXP2_04_PIN                            4
+#define EXP2_03_PIN                           31
+#define EXP2_02_PIN                           76
+#define EXP2_01_PIN                           74
+>>>>>>> bugfix-2.1.x
 
 //
 // LCD / Controller
@@ -167,6 +195,7 @@
 #if HAS_WIRED_LCD
   // ramps-fd lcd adaptor
 
+<<<<<<< HEAD
   #define BEEPER_PIN                 EXP1_10_PIN
   #define BTN_EN1                    EXP2_06_PIN
   #define BTN_EN2                    EXP2_08_PIN
@@ -176,17 +205,34 @@
   #if IS_NEWPANEL
     #define LCD_PINS_RS              EXP1_04_PIN
     #define LCD_PINS_ENABLE          EXP1_03_PIN
+=======
+  #define BEEPER_PIN                 EXP1_01_PIN
+  #define BTN_EN1                    EXP2_05_PIN
+  #define BTN_EN2                    EXP2_03_PIN
+  #define BTN_ENC                    EXP1_02_PIN
+  #define SD_DETECT_PIN              EXP2_07_PIN
+
+  #if IS_NEWPANEL
+    #define LCD_PINS_RS              EXP1_07_PIN
+    #define LCD_PINS_ENABLE          EXP1_08_PIN
+>>>>>>> bugfix-2.1.x
   #endif
 
   #if ENABLED(FYSETC_MINI_12864)
     #define DOGLCD_CS            LCD_PINS_ENABLE
     #define DOGLCD_A0                LCD_PINS_RS
+<<<<<<< HEAD
     #define DOGLCD_SCK               EXP2_09_PIN
     #define DOGLCD_MOSI              EXP2_05_PIN
+=======
+    #define DOGLCD_SCK               EXP2_02_PIN
+    #define DOGLCD_MOSI              EXP2_06_PIN
+>>>>>>> bugfix-2.1.x
 
     //#define FORCE_SOFT_SPI                      // Use this if default of hardware SPI causes display problems
                                                   //   results in LCD soft SPI mode 3, SD soft SPI mode 0
 
+<<<<<<< HEAD
     #define LCD_RESET_PIN            EXP1_05_PIN  // Must be high or open for LCD to operate normally.
 
     #if EITHER(FYSETC_MINI_12864_1_2, FYSETC_MINI_12864_2_0)
@@ -201,10 +247,27 @@
       #endif
     #elif ENABLED(FYSETC_MINI_12864_2_1)
       #define NEOPIXEL_PIN           EXP1_06_PIN
+=======
+    #define LCD_RESET_PIN            EXP1_06_PIN  // Must be high or open for LCD to operate normally.
+
+    #if EITHER(FYSETC_MINI_12864_1_2, FYSETC_MINI_12864_2_0)
+      #ifndef RGB_LED_R_PIN
+        #define RGB_LED_R_PIN        EXP1_05_PIN
+      #endif
+      #ifndef RGB_LED_G_PIN
+        #define RGB_LED_G_PIN        EXP1_04_PIN
+      #endif
+      #ifndef RGB_LED_B_PIN
+        #define RGB_LED_B_PIN        EXP1_03_PIN
+      #endif
+    #elif ENABLED(FYSETC_MINI_12864_2_1)
+      #define NEOPIXEL_PIN           EXP1_05_PIN
+>>>>>>> bugfix-2.1.x
     #endif
 
   #elif IS_NEWPANEL
 
+<<<<<<< HEAD
     #define LCD_PINS_D4              EXP1_05_PIN
     #define LCD_PINS_D5              EXP1_06_PIN
     #define LCD_PINS_D6              EXP1_07_PIN
@@ -213,10 +276,21 @@
     #if ENABLED(MINIPANEL)
       #define DOGLCD_CS              EXP1_06_PIN
       #define DOGLCD_A0              EXP1_07_PIN
+=======
+    #define LCD_PINS_D4              EXP1_06_PIN
+    #define LCD_PINS_D5              EXP1_05_PIN
+    #define LCD_PINS_D6              EXP1_04_PIN
+    #define LCD_PINS_D7              EXP1_03_PIN
+
+    #if ENABLED(MINIPANEL)
+      #define DOGLCD_CS              EXP1_05_PIN
+      #define DOGLCD_A0              EXP1_04_PIN
+>>>>>>> bugfix-2.1.x
     #endif
 
   #endif
 
+<<<<<<< HEAD
   #if ANY(VIKI2, miniVIKI)
     #define DOGLCD_A0                EXP1_04_PIN
     #define KILL_PIN                          51
@@ -226,6 +300,17 @@
     #define DOGLCD_SCK               EXP2_09_PIN  // SCK_PIN   - Required for DUE Hardware SPI
     #define DOGLCD_MOSI              EXP2_05_PIN  // MOSI_PIN
     #define DOGLCD_MISO              EXP2_10_PIN  // MISO_PIN
+=======
+  #if EITHER(VIKI2, miniVIKI)
+    #define DOGLCD_A0                EXP1_07_PIN
+    #define KILL_PIN                          51
+    #define STAT_LED_BLUE_PIN        EXP1_03_PIN
+    #define STAT_LED_RED_PIN         EXP1_06_PIN
+    #define DOGLCD_CS                EXP1_08_PIN
+    #define DOGLCD_SCK               EXP2_02_PIN  // SCK_PIN   - Required for DUE Hardware SPI
+    #define DOGLCD_MOSI              EXP2_06_PIN  // MOSI_PIN
+    #define DOGLCD_MISO              EXP2_01_PIN  // MISO_PIN
+>>>>>>> bugfix-2.1.x
   #endif
 
   #if ENABLED(REPRAP_DISCOUNT_FULL_GRAPHIC_SMART_CONTROLLER)

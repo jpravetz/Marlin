@@ -86,6 +86,7 @@
    *
    * Parameters:
    *
+<<<<<<< HEAD
    *   S[segments-per-second] - Segments-per-second
    *
    * Without NO_WORKSPACE_OFFSETS:
@@ -93,6 +94,15 @@
    *   P[theta-psi-offset]    - Theta-Psi offset, added to the shoulder (A/X) angle
    *   T[theta-offset]        - Theta     offset, added to the elbow    (B/Y) angle
    *   Z[z-offset]            - Z offset, added to Z
+=======
+   *   S[segments]          - Segments-per-second
+   *
+   * Without NO_WORKSPACE_OFFSETS:
+   *
+   *   P[theta-psi-offset]  - Theta-Psi offset, added to the shoulder (A/X) angle
+   *   T[theta-offset]      - Theta     offset, added to the elbow    (B/Y) angle
+   *   Z[z-offset]          - Z offset, added to Z
+>>>>>>> bugfix-2.1.x
    *
    *   A, P, and X are all aliases for the shoulder angle
    *   B, T, and Y are all aliases for the elbow angle
@@ -152,6 +162,7 @@
    *
    * Parameters:
    *
+<<<<<<< HEAD
    *   S[segments-per-second] - Segments-per-second
    */
   void GcodeSuite::M665() {
@@ -164,6 +175,37 @@
   void GcodeSuite::M665_report(const bool forReplay/*=true*/) {
     report_heading_etc(forReplay, F(STR_POLARGRAPH_SETTINGS " (" STR_S_SEG_PER_SEC ")"));
     SERIAL_ECHOLNPGM("  M665 S", segments_per_second);
+=======
+   *   S[segments]  - Segments-per-second
+   *   L[left]      - Work area minimum X
+   *   R[right]     - Work area maximum X
+   *   T[top]       - Work area maximum Y
+   *   B[bottom]    - Work area minimum Y
+   *   H[length]    - Maximum belt length
+   */
+  void GcodeSuite::M665() {
+    if (!parser.seen_any()) return M665_report();
+    if (parser.seenval('S')) segments_per_second = parser.value_float();
+    if (parser.seenval('L')) draw_area_min.x = parser.value_linear_units();
+    if (parser.seenval('R')) draw_area_max.x = parser.value_linear_units();
+    if (parser.seenval('T')) draw_area_max.y = parser.value_linear_units();
+    if (parser.seenval('B')) draw_area_min.y = parser.value_linear_units();
+    if (parser.seenval('H')) polargraph_max_belt_len = parser.value_linear_units();
+    draw_area_size.x = draw_area_max.x - draw_area_min.x;
+    draw_area_size.y = draw_area_max.y - draw_area_min.y;
+  }
+
+  void GcodeSuite::M665_report(const bool forReplay/*=true*/) {
+    report_heading_etc(forReplay, F(STR_POLARGRAPH_SETTINGS));
+    SERIAL_ECHOLNPGM_P(
+      PSTR("  M665 S"), LINEAR_UNIT(segments_per_second),
+      PSTR(" L"), LINEAR_UNIT(draw_area_min.x),
+      PSTR(" R"), LINEAR_UNIT(draw_area_max.x),
+      SP_T_STR, LINEAR_UNIT(draw_area_max.y),
+      SP_B_STR, LINEAR_UNIT(draw_area_min.y),
+      PSTR(" H"), LINEAR_UNIT(polargraph_max_belt_len)
+    );
+>>>>>>> bugfix-2.1.x
   }
 
 #endif

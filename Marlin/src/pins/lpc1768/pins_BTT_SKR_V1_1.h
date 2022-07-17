@@ -58,6 +58,7 @@
 
 
 /**        ------                  ------
+<<<<<<< HEAD
  *   1.30 |10  9 | 2.11      0.17 |10  9 | 0.15
  *   0.18 | 8  7 | 0.16      3.26 | 8  7 | 1.23
  *   0.15   6  5 | --        3.25   6  5 | 0.18
@@ -83,6 +84,33 @@
 #define EXP2_08_PIN                        P3_26
 #define EXP2_09_PIN                        P0_15
 #define EXP2_10_PIN                        P0_17
+=======
+ *   1.30 | 1  2 | 2.11      0.17 | 1  2 | 0.15
+ *   0.18 | 3  4 | 0.16      3.26 | 3  4 | 1.23
+ *   0.15   5  6 | --        3.25   5  6 | 0.18
+ *     -- | 7  8 | --        1.31 | 7  8 | RESET
+ *    GND | 9 10 | 5V         GND | 9 10 | --
+ *         ------                  ------
+ *          EXP1                    EXP2
+ */
+#define EXP1_08_PIN                        -1     // NC
+#define EXP1_07_PIN                        -1     // NC
+#define EXP1_06_PIN                        -1     // NC
+#define EXP1_05_PIN                        P0_15
+#define EXP1_04_PIN                        P0_16
+#define EXP1_03_PIN                        P0_18
+#define EXP1_02_PIN                        P2_11
+#define EXP1_01_PIN                        P1_30
+
+#define EXP2_08_PIN                        -1     // RESET
+#define EXP2_07_PIN                        P1_31
+#define EXP2_06_PIN                        P0_18
+#define EXP2_05_PIN                        P3_25
+#define EXP2_04_PIN                        P1_23
+#define EXP2_03_PIN                        P3_26
+#define EXP2_02_PIN                        P0_15
+#define EXP2_01_PIN                        P0_17
+>>>>>>> bugfix-2.1.x
 
 /**
  * LCD / Controller
@@ -100,11 +128,16 @@
 #if IS_TFTGLCD_PANEL
 
   #if ENABLED(TFTGLCD_PANEL_SPI)
+<<<<<<< HEAD
     #define TFTGLCD_CS               EXP2_08_PIN
+=======
+    #define TFTGLCD_CS               EXP2_03_PIN
+>>>>>>> bugfix-2.1.x
   #endif
 
 #elif HAS_WIRED_LCD
 
+<<<<<<< HEAD
   #define BTN_EN1                    EXP2_08_PIN
   #define BTN_EN2                    EXP2_06_PIN
   #define BTN_ENC                    EXP1_09_PIN
@@ -117,6 +150,20 @@
   #if ENABLED(MKS_MINI_12864)
     #define DOGLCD_CS                      P2_06
     #define DOGLCD_A0                EXP1_07_PIN
+=======
+  #define BTN_EN1                    EXP2_03_PIN
+  #define BTN_EN2                    EXP2_05_PIN
+  #define BTN_ENC                    EXP1_02_PIN
+
+  #define LCD_SDSS                   EXP2_04_PIN
+  #define LCD_PINS_RS                EXP1_04_PIN
+  #define LCD_PINS_ENABLE            EXP2_06_PIN
+  #define LCD_PINS_D4                EXP2_02_PIN
+
+  #if ENABLED(MKS_MINI_12864)
+    #define DOGLCD_CS                      P2_06
+    #define DOGLCD_A0                EXP1_04_PIN
+>>>>>>> bugfix-2.1.x
   #endif
 
 #endif // HAS_WIRED_LCD
@@ -165,10 +212,17 @@
   // When using any TMC SPI-based drivers, software SPI is used
   // because pins may be shared with the display or SD card.
   #define TMC_USE_SW_SPI
+<<<<<<< HEAD
   #define TMC_SW_MOSI                EXP2_05_PIN
   #define TMC_SW_MISO                EXP2_10_PIN
   // To minimize pin usage use the same clock pin as the display/SD card reader. (May generate LCD noise.)
   #define TMC_SW_SCK                 EXP2_09_PIN
+=======
+  #define TMC_SW_MOSI                EXP2_06_PIN
+  #define TMC_SW_MISO                EXP2_01_PIN
+  // To minimize pin usage use the same clock pin as the display/SD card reader. (May generate LCD noise.)
+  #define TMC_SW_SCK                 EXP2_02_PIN
+>>>>>>> bugfix-2.1.x
   // If pin 2_06 is unused, it can be used for the clock to avoid the LCD noise.
   //#define TMC_SW_SCK                     P2_06
 
@@ -211,11 +265,19 @@
     //            SDCARD_CONNECTION must not be 'LCD'. Nothing should be connected to EXP1/EXP2.
     //#define SKR_USE_LCD_PINS_FOR_CS
     #if ENABLED(SKR_USE_LCD_PINS_FOR_CS)
+<<<<<<< HEAD
       #define X_CS_PIN               EXP2_07_PIN
       #define Y_CS_PIN               EXP2_08_PIN
       #define Z_CS_PIN               EXP1_09_PIN
       #define E0_CS_PIN              EXP2_06_PIN
       #define E1_CS_PIN              EXP2_04_PIN
+=======
+      #define X_CS_PIN               EXP2_04_PIN
+      #define Y_CS_PIN               EXP2_03_PIN
+      #define Z_CS_PIN               EXP1_02_PIN
+      #define E0_CS_PIN              EXP2_05_PIN
+      #define E1_CS_PIN              EXP2_07_PIN
+>>>>>>> bugfix-2.1.x
     #endif
 
     // Example 2: A REPRAP_DISCOUNT_FULL_GRAPHIC_SMART_CONTROLLER
@@ -228,11 +290,19 @@
       #define Z_CS_PIN                     P2_06
       // We use SD_DETECT_PIN for E0
       #undef SD_DETECT_PIN
+<<<<<<< HEAD
       #define E0_CS_PIN              EXP2_04_PIN
       // We use LCD_SDSS pin for E1
       #undef LCD_SDSS
       #define LCD_SDSS                     -1
       #define E1_CS_PIN              EXP2_07_PIN
+=======
+      #define E0_CS_PIN              EXP2_07_PIN
+      // We use LCD_SDSS pin for E1
+      #undef LCD_SDSS
+      #define LCD_SDSS                     -1
+      #define E1_CS_PIN              EXP2_04_PIN
+>>>>>>> bugfix-2.1.x
     #endif
 
     // Example 3: Use the driver enable pins for chip-select.

@@ -73,6 +73,7 @@
 #define MAX31865_FAULT_RTDINLOW 0x08    // D3
 #define MAX31865_FAULT_OVUV 0x04        // D2
 
+<<<<<<< HEAD
 // http://www.analog.com/media/en/technical-documentation/application-notes/AN709_0.pdf
 // constants for calculating temperature from the measured RTD resistance.
 #define RTD_Z1 -0.0039083
@@ -80,6 +81,8 @@
 #define RTD_Z3 -0.0000000231
 #define RTD_Z4 -0.000001155
 
+=======
+>>>>>>> bugfix-2.1.x
 typedef enum max31865_numwires {
   MAX31865_2WIRE = 0,
   MAX31865_3WIRE = 1,
@@ -103,7 +106,11 @@ private:
 
   uint16_t spiDelay;
 
+<<<<<<< HEAD
   float zeroRes, refRes, wireRes;
+=======
+  float resNormalizer, refRes, wireRes;
+>>>>>>> bugfix-2.1.x
 
   #if ENABLED(MAX31865_USE_READ_ERROR_DETECTION)
     millis_t lastReadStamp = 0;
@@ -160,7 +167,11 @@ public:
              int8_t spi_clk);
   #endif
 
+<<<<<<< HEAD
   void begin(max31865_numwires_t wires, float zero_res, float ref_res, float wire_res);
+=======
+  void begin(max31865_numwires_t wires, const_float_t zero_res, const_float_t ref_res, const_float_t wire_res);
+>>>>>>> bugfix-2.1.x
 
   uint8_t readFault();
   void clearFault();
@@ -168,6 +179,10 @@ public:
   uint16_t readRaw();
   float readResistance();
   float temperature();
+<<<<<<< HEAD
   float temperature(uint16_t adc_val);
+=======
+  float temperature(const uint16_t adc_val);
+>>>>>>> bugfix-2.1.x
   float temperature(float rtd_res);
 };

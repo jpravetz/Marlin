@@ -50,12 +50,21 @@ uint8_t read_byte(const uint8_t *byte) { return *byte; }
  *   @ displays an axis name such as XYZUVW, or E for an extruder
  */
 void DWIN_String::add(const char *tpl, const int8_t index, const char *cstr/*=nullptr*/, FSTR_P const fstr/*=nullptr*/) {
+<<<<<<< HEAD
   wchar_t wchar;
 
   while (*tpl) {
     tpl = get_utf8_value_cb(tpl, read_byte, &wchar);
     if (wchar > 255) wchar |= 0x0080;
     const uint8_t ch = uint8_t(wchar & 0x00FF);
+=======
+  lchar_t wc;
+
+  while (*tpl) {
+    tpl = get_utf8_value_cb(tpl, read_byte, wc);
+    if (wc > 255) wc |= 0x0080;
+    const uint8_t ch = uint8_t(wc & 0x00FF);
+>>>>>>> bugfix-2.1.x
 
     if (ch == '=' || ch == '~' || ch == '*') {
       if (index >= 0) {
@@ -80,6 +89,7 @@ void DWIN_String::add(const char *tpl, const int8_t index, const char *cstr/*=nu
 }
 
 void DWIN_String::add(const char *cstr, uint8_t max_len/*=MAX_STRING_LENGTH*/) {
+<<<<<<< HEAD
   wchar_t wchar;
   while (*cstr && max_len) {
     cstr = get_utf8_value_cb(cstr, read_byte, &wchar);
@@ -89,23 +99,47 @@ void DWIN_String::add(const char *cstr, uint8_t max_len/*=MAX_STRING_LENGTH*/) {
     add_character(ch);
     */
     add(wchar);
+=======
+  lchar_t wc;
+  while (*cstr && max_len) {
+    cstr = get_utf8_value_cb(cstr, read_byte, wc);
+    /*
+    if (wc > 255) wc |= 0x0080;
+    const uint8_t ch = uint8_t(wc & 0x00FF);
+    add_character(ch);
+    */
+    add(wc);
+>>>>>>> bugfix-2.1.x
     max_len--;
   }
   eol();
 }
 
+<<<<<<< HEAD
 void DWIN_String::add(const wchar_t character) {
+=======
+void DWIN_String::add(const lchar_t &wc) {
+>>>>>>> bugfix-2.1.x
   int ret;
   size_t idx = 0;
   dwin_charmap_t pinval;
   dwin_charmap_t *copy_address = nullptr;
+<<<<<<< HEAD
   pinval.uchar = character;
+=======
+  pinval.uchar = wc;
+>>>>>>> bugfix-2.1.x
   pinval.idx = -1;
 
   // For 8-bit ASCII just print the single character
   char str[] = { '?', 0 };
+<<<<<<< HEAD
   if (character < 255) {
     str[0] = (char)character;
+=======
+  if (wc < 255) {
+    str[0] = (char)wc;
+>>>>>>> bugfix-2.1.x
   }
   else {
     copy_address = nullptr;

@@ -30,9 +30,15 @@
  * M149: Set temperature units
  */
 void GcodeSuite::M149() {
+<<<<<<< HEAD
        if (parser.seenval('C')) parser.set_input_temp_units(TEMPUNIT_C);
   else if (parser.seenval('K')) parser.set_input_temp_units(TEMPUNIT_K);
   else if (parser.seenval('F')) parser.set_input_temp_units(TEMPUNIT_F);
+=======
+       if (parser.seen('C')) parser.set_input_temp_units(TEMPUNIT_C);
+  else if (parser.seen('K')) parser.set_input_temp_units(TEMPUNIT_K);
+  else if (parser.seen('F')) parser.set_input_temp_units(TEMPUNIT_F);
+>>>>>>> bugfix-2.1.x
   else M149_report();
 }
 

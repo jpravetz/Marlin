@@ -32,10 +32,13 @@
 
 #include "../../inc/MarlinConfig.h"
 
+<<<<<<< HEAD
 #if HAS_L64XX
   #include "L64xx.h"
 #endif
 
+=======
+>>>>>>> bugfix-2.1.x
 #if HAS_TMC26X
   #include "TMC26X.h"
 #endif

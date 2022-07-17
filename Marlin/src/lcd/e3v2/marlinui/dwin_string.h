@@ -29,7 +29,11 @@
 #include <stdint.h>
 
 typedef struct _dwin_charmap_t {
+<<<<<<< HEAD
   wchar_t uchar; // the unicode char
+=======
+  lchar_t uchar; // the unicode char
+>>>>>>> bugfix-2.1.x
   uint8_t idx;   // the glyph of the char in the ROM
   uint8_t idx2;  // the char used to be combined with the idx to simulate a single char
 } dwin_charmap_t;
@@ -69,10 +73,17 @@ class DWIN_String {
     /**
      * @brief Append a UTF-8 character
      *
+<<<<<<< HEAD
      * @param character The UTF-8 character
      */
     static void add(wchar_t character);
     static void set(wchar_t character) { set(); add(character); }
+=======
+     * @param wc The UTF-8 character
+     */
+    static void add(const lchar_t &wc);
+    static void set(const lchar_t &wc) { set(); add(wc); }
+>>>>>>> bugfix-2.1.x
 
     /**
      * @brief Append / Set C-string

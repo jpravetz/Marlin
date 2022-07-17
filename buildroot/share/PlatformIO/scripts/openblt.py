@@ -10,11 +10,20 @@ if pioutil.is_pio_build():
 
 	board = env.BoardConfig()
 	board_keys = board.get("build").keys()
+<<<<<<< HEAD
 	if 'encrypt' in board_keys:
+=======
+	if 'encode' in board_keys:
+>>>>>>> bugfix-2.1.x
 		env.AddPostAction(
 			join("$BUILD_DIR", "${PROGNAME}.bin"),
 			env.VerboseAction(" ".join([
 				"$OBJCOPY", "-O", "srec",
+<<<<<<< HEAD
 				"\"$BUILD_DIR/${PROGNAME}.elf\"", "\"" + join("$BUILD_DIR", board.get("build.encrypt")) + "\""
 			]), "Building $TARGET")
+=======
+				"\"$BUILD_DIR/${PROGNAME}.elf\"", "\"" + join("$BUILD_DIR", board.get("build.encode")) + "\""
+			]), "Building " + board.get("build.encode"))
+>>>>>>> bugfix-2.1.x
 		)

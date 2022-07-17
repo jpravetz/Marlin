@@ -21,9 +21,12 @@
  */
 #pragma once
 
+<<<<<<< HEAD
 #include "../../../core/types.h"
 #include "../../../feature/bedlevel/bedlevel.h"
 
+=======
+>>>>>>> bugfix-2.1.x
 /**
  * Mesh Viewer for PRO UI
  * Author: Miguel A. Risco-Castillo (MRISCOC)

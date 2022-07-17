@@ -31,8 +31,15 @@
 
 #if ENABLED(DWIN_LCD_PROUI)
 
+<<<<<<< HEAD
 #include "../../../core/types.h"
 #include "dwin_lcd.h"
+=======
+#include "dwin_defines.h"
+
+#if HAS_LOCKSCREEN
+
+>>>>>>> bugfix-2.1.x
 #include "dwinui.h"
 #include "dwin.h"
 #include "lockscreen.h"
@@ -73,4 +80,9 @@ void LockScreenClass::onEncoder(EncoderState encoder_diffState) {
   DWIN_UpdateLCD();
 }
 
+<<<<<<< HEAD
+=======
+#endif // HAS_LOCKSCREEN
+
+>>>>>>> bugfix-2.1.x
 #endif // DWIN_LCD_PROUI

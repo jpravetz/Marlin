@@ -49,8 +49,11 @@ MarlinUI ui;
   #include "e3v2/creality/dwin.h"
 #elif ENABLED(DWIN_LCD_PROUI)
   #include "e3v2/proui/dwin.h"
+<<<<<<< HEAD
 #elif ENABLED(DWIN_CREALITY_LCD_JYERSUI)
   #include "e3v2/jyersui/dwin.h"
+=======
+>>>>>>> bugfix-2.1.x
 #endif
 
 #if ENABLED(LCD_PROGRESS_BAR) && !IS_TFTGLCD_PANEL
@@ -146,6 +149,17 @@ constexpr uint8_t epps = ENCODER_PULSES_PER_STEP;
     REPEAT_1(PREHEAT_COUNT, _PDEF);
     static PGM_P const preheat_labels[PREHEAT_COUNT] PROGMEM = { REPEAT_1(PREHEAT_COUNT, _PLBL) };
     return FPSTR((PGM_P)pgm_read_ptr(&preheat_labels[m]));
+<<<<<<< HEAD
+  }
+
+  void MarlinUI::apply_preheat(const uint8_t m, const uint8_t pmask, const uint8_t e/*=active_extruder*/) {
+    const preheat_t &pre = material_preset[m];
+    TERN_(HAS_HOTEND,           if (TEST(pmask, PT_HOTEND))  thermalManager.setTargetHotend(pre.hotend_temp, e));
+    TERN_(HAS_HEATED_BED,       if (TEST(pmask, PT_BED))     thermalManager.setTargetBed(pre.bed_temp));
+    //TERN_(HAS_HEATED_CHAMBER, if (TEST(pmask, PT_CHAMBER)) thermalManager.setTargetBed(pre.chamber_temp));
+    TERN_(HAS_FAN,              if (TEST(pmask, PT_FAN))     thermalManager.set_fan_speed(0, pre.fan_speed));
+=======
+>>>>>>> bugfix-2.1.x
   }
 
   void MarlinUI::apply_preheat(const uint8_t m, const uint8_t pmask, const uint8_t e/*=active_extruder*/) {
@@ -157,6 +171,11 @@ constexpr uint8_t epps = ENCODER_PULSES_PER_STEP;
   }
 #endif
 
+#if EITHER(HAS_MARLINUI_MENU, EXTENSIBLE_UI)
+  bool MarlinUI::lcd_clicked;
+#endif
+
+<<<<<<< HEAD
 #if EITHER(HAS_MARLINUI_MENU, EXTENSIBLE_UI)
   bool MarlinUI::lcd_clicked;
 #endif
@@ -174,6 +193,21 @@ constexpr uint8_t epps = ENCODER_PULSES_PER_STEP;
     return blink != 0;
   }
 
+=======
+#if HAS_WIRED_LCD
+
+  bool MarlinUI::get_blink() {
+    static uint8_t blink = 0;
+    static millis_t next_blink_ms = 0;
+    millis_t ms = millis();
+    if (ELAPSED(ms, next_blink_ms)) {
+      blink ^= 0xFF;
+      next_blink_ms = ms + 1000 - (LCD_UPDATE_INTERVAL) / 2;
+    }
+    return blink != 0;
+  }
+
+>>>>>>> bugfix-2.1.x
 #endif
 
 // Encoder Handling
@@ -417,26 +451,43 @@ void MarlinUI::init() {
         };
 
         const uint8_t *p = (uint8_t*)string;
+<<<<<<< HEAD
         wchar_t ch;
+=======
+        lchar_t wc;
+>>>>>>> bugfix-2.1.x
         if (wordwrap) {
           const uint8_t *wrd = nullptr;
           uint8_t c = 0;
           // find the end of the part
           for (;;) {
             if (!wrd) wrd = p;            // Get word start /before/ advancing
+<<<<<<< HEAD
             p = get_utf8_value_cb(p, cb_read_byte, &ch);
             const bool eol = !ch;         // zero ends the string
             // End or a break between phrases?
             if (eol || ch == ' ' || ch == '-' || ch == '+' || ch == '.') {
               if (!c && ch == ' ') { if (wrd) wrd++; continue; } // collapse extra spaces
+=======
+            p = get_utf8_value_cb(p, cb_read_byte, wc);
+            const bool eol = !wc;         // zero ends the string
+            // End or a break between phrases?
+            if (eol || wc == ' ' || wc == '-' || wc == '+' || wc == '.') {
+              if (!c && wc == ' ') { if (wrd) wrd++; continue; } // collapse extra spaces
+>>>>>>> bugfix-2.1.x
               // Past the right and the word is not too long?
               if (col + c > LCD_WIDTH && col >= (LCD_WIDTH) / 4) _newline(); // should it wrap?
               c += !eol;                  // +1 so the space will be printed
               col += c;                   // advance col to new position
               while (c) {                 // character countdown
                 --c;                      // count down to zero
+<<<<<<< HEAD
                 wrd = get_utf8_value_cb(wrd, cb_read_byte, &ch); // get characters again
                 lcd_put_wchar(ch);        // character to the LCD
+=======
+                wrd = get_utf8_value_cb(wrd, cb_read_byte, wc); // get characters again
+                lcd_put_lchar(wc);        // character to the LCD
+>>>>>>> bugfix-2.1.x
               }
               if (eol) break;             // all done!
               wrd = nullptr;              // set up for next word
@@ -446,9 +497,15 @@ void MarlinUI::init() {
         }
         else {
           for (;;) {
+<<<<<<< HEAD
             p = get_utf8_value_cb(p, cb_read_byte, &ch);
             if (!ch) break;
             lcd_put_wchar(ch);
+=======
+            p = get_utf8_value_cb(p, cb_read_byte, wc);
+            if (!wc) break;
+            lcd_put_lchar(wc);
+>>>>>>> bugfix-2.1.x
             col++;
             if (col >= LCD_WIDTH) _newline();
           }
@@ -763,6 +820,10 @@ void MarlinUI::init() {
 
     millis_t ManualMove::start_time = 0;
     float ManualMove::menu_scale = 1;
+<<<<<<< HEAD
+=======
+    screenFunc_t ManualMove::screen_ptr;
+>>>>>>> bugfix-2.1.x
     #if IS_KINEMATIC
       float ManualMove::offset = 0;
       xyze_pos_t ManualMove::all_axes_destination = { 0 };
@@ -772,6 +833,12 @@ void MarlinUI::init() {
       int8_t ManualMove::e_index = 0;
     #endif
     AxisEnum ManualMove::axis = NO_AXIS_ENUM;
+<<<<<<< HEAD
+=======
+    #if ENABLED(MANUAL_E_MOVES_RELATIVE)
+      float ManualMove::e_origin = 0;
+    #endif
+>>>>>>> bugfix-2.1.x
 
     /**
      * If a manual move has been posted and its time has arrived, and if the planner
@@ -788,9 +855,12 @@ void MarlinUI::init() {
      * For kinematic machines:
      *   - Set manual_move.offset to modify one axis and post the move.
      *     This is used to achieve more rapid stepping on kinematic machines.
+<<<<<<< HEAD
      *
      * Currently used by the _lcd_move_xyz function in menu_motion.cpp
      * and the ubl_map_move_to_xy function in menu_ubl.cpp.
+=======
+>>>>>>> bugfix-2.1.x
      */
     void ManualMove::task() {
 
@@ -861,7 +931,11 @@ void MarlinUI::init() {
 
       void MarlinUI::external_encoder() {
         if (external_control && encoderDiff) {
+<<<<<<< HEAD
           bedlevel.encoder_diff += encoderDiff;  // Encoder for UBL G29 mesh editing
+=======
+          bedlevel.encoder_diff += encoderDiff; // Encoder for UBL G29 mesh editing
+>>>>>>> bugfix-2.1.x
           encoderDiff = 0;                  // Hide encoder events from the screen handler
           refresh(LCDVIEW_REDRAW_NOW);      // ...but keep the refresh.
         }
@@ -1574,7 +1648,10 @@ void MarlinUI::init() {
     TERN_(EXTENSIBLE_UI, ExtUI::onStatusChanged(status_message));
     TERN_(DWIN_CREALITY_LCD, DWIN_StatusChanged(status_message));
     TERN_(DWIN_LCD_PROUI, DWIN_CheckStatusMessage());
+<<<<<<< HEAD
     TERN_(DWIN_CREALITY_LCD_JYERSUI, CrealityDWIN.Update_Status(status_message));
+=======
+>>>>>>> bugfix-2.1.x
   }
 
   #if ENABLED(STATUS_MESSAGE_SCROLLING)

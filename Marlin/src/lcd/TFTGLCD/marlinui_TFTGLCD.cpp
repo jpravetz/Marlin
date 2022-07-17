@@ -524,16 +524,27 @@ FORCE_INLINE void _draw_axis_value(const AxisEnum axis, const char *value, const
       UNUSED(blink);
     #else
       if (!blink && thermalManager.heater_idle[thermalManager.idle_index_for_id(heater_id)].timed_out) {
+<<<<<<< HEAD
         lcd_put_wchar(' ');
         if (t2 >= 10) lcd_put_wchar(' ');
         if (t2 >= 100) lcd_put_wchar(' ');
+=======
+        lcd_put_lchar(' ');
+        if (t2 >= 10) lcd_put_lchar(' ');
+        if (t2 >= 100) lcd_put_lchar(' ');
+>>>>>>> bugfix-2.1.x
       }
       else
     #endif
         lcd_put_u8str(i16tostr3left(t2));
 
+<<<<<<< HEAD
     lcd_put_wchar(' ');
     if (t2 < 10) lcd_put_wchar(' ');
+=======
+    lcd_put_lchar(' ');
+    if (t2 < 10) lcd_put_lchar(' ');
+>>>>>>> bugfix-2.1.x
 
     if (t2) picBits |= ICON_TEMP1;
     else    picBits &= ~ICON_TEMP1;
@@ -545,7 +556,11 @@ FORCE_INLINE void _draw_axis_value(const AxisEnum axis, const char *value, const
 
   FORCE_INLINE void _draw_flowmeter_status() {
     lcd_moveto(5, 5); lcd_put_u8str(F("FLOW"));
+<<<<<<< HEAD
     lcd_moveto(7, 6); lcd_put_wchar('L');
+=======
+    lcd_moveto(7, 6); lcd_put_lchar('L');
+>>>>>>> bugfix-2.1.x
     lcd_moveto(6, 7); lcd_put_u8str(ftostr11ns(cooler.flowrate));
 
     if (cooler.flowrate)  picBits |= ICON_FAN;
@@ -564,7 +579,11 @@ FORCE_INLINE void _draw_axis_value(const AxisEnum axis, const char *value, const
     {
       lcd_put_u8str("mA");
       lcd_moveto(10, 7);
+<<<<<<< HEAD
       lcd_put_wchar(' '); lcd_put_u8str(ui16tostr3rj(uint16_t(ammeter.current * 1000 + 0.5f)));
+=======
+      lcd_put_lchar(' '); lcd_put_u8str(ui16tostr3rj(uint16_t(ammeter.current * 1000 + 0.5f)));
+>>>>>>> bugfix-2.1.x
     }
     else {
       lcd_put_u8str(" A");
@@ -585,9 +604,15 @@ FORCE_INLINE void _draw_axis_value(const AxisEnum axis, const char *value, const
     #if CUTTER_UNIT_IS(RPM)
       lcd_moveto(16, 6);  lcd_put_u8str(F("RPM"));
       lcd_moveto(15, 7);  lcd_put_u8str(ftostr31ns(float(cutter.unitPower) / 1000));
+<<<<<<< HEAD
       lcd_put_wchar('K');
     #elif CUTTER_UNIT_IS(PERCENT)
       lcd_moveto(17, 6);  lcd_put_wchar('%');
+=======
+      lcd_put_lchar('K');
+    #elif CUTTER_UNIT_IS(PERCENT)
+      lcd_moveto(17, 6);  lcd_put_lchar('%');
+>>>>>>> bugfix-2.1.x
       lcd_moveto(18, 7);  lcd_put_u8str(cutter_power2str(cutter.unitPower));
     #else
       lcd_moveto(17, 7);  lcd_put_u8str(cutter_power2str(cutter.unitPower));

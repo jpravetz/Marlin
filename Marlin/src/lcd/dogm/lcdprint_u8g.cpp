@@ -28,7 +28,11 @@ void lcd_put_int(const int i) { u8g.print(i); }
 
 // return < 0 on error
 // return the advanced pixels
+<<<<<<< HEAD
 int lcd_put_wchar_max(const wchar_t c, const pixel_len_t max_length) {
+=======
+int lcd_put_lchar_max(const lchar_t &c, const pixel_len_t max_length) {
+>>>>>>> bugfix-2.1.x
   if (c < 256) {
     u8g.print((char)c);
     return u8g_GetFontBBXWidth(u8g.getU8g());

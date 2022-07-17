@@ -25,6 +25,7 @@
             "svdFile": "${env:HOME}/.platformio/platforms/ststm32@12.1.1/misc/svd/STM32F40x.svd",
         },
         {
+<<<<<<< HEAD
             "name": "Debug Sim",
             "request": "launch",
             "type": "cppdbg",
@@ -34,6 +35,28 @@
             "program": ".pio/build/simulator_macos_debug/MarlinSimulator",
             "miDebuggerPath": "/opt/local/bin/ggdb",
             "MIMode": "gdb"
+=======
+            "name": "Launch Sim (ggdb)",
+            "request": "launch",
+            "type": "cppdbg",
+            "cwd": "${workspaceRoot}",
+            "program": "${workspaceRoot}/.pio/build/simulator_macos_debug/debug/MarlinSimulator",
+            //"program": "${workspaceRoot}/.pio/build/simulator_linux_debug/MarlinSimulator",
+            //"program": "${workspaceRoot}/.pio/build/simulator_windows/MarlinSimulator",
+            "miDebuggerPath": "/opt/local/bin/ggdb",
+            "MIMode": "gdb"
+        },
+        {
+            "name": "Launch Sim (lldb)",
+            "request": "launch",
+            "type": "cppdbg",
+            "cwd": "${workspaceRoot}",
+            "program": "${workspaceRoot}/.pio/build/simulator_macos_debug/debug/MarlinSimulator",
+            //"program": "${workspaceRoot}/.pio/build/simulator_linux_debug/MarlinSimulator",
+            //"program": "${workspaceRoot}/.pio/build/simulator_windows/MarlinSimulator",
+            //"targetArchitecture": "arm64",
+            "MIMode": "lldb"
+>>>>>>> bugfix-2.1.x
         }
     ]
 }

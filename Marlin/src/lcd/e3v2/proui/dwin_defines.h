@@ -28,10 +28,18 @@
  * Date: 2022/02/28
  */
 
+<<<<<<< HEAD
+=======
+#define HAS_GCODE_PREVIEW 1
+#define HAS_PIDPLOT 1
+#define HAS_ESDIAG 1
+#define HAS_LOCKSCREEN 1
+>>>>>>> bugfix-2.1.x
 //#define DEBUG_DWIN 1
 //#define NEED_HEX_PRINT 1
 
 #include "../../../inc/MarlinConfigPre.h"
+<<<<<<< HEAD
 #include <stddef.h>
 
 #define HAS_ESDIAG 1
@@ -41,10 +49,20 @@
   #define DASH_REDRAW 1
 #endif
 
+=======
+>>>>>>> bugfix-2.1.x
 #include "../common/dwin_color.h"
 #if ENABLED(LED_CONTROL_MENU)
   #include "../../../feature/leds/leds.h"
 #endif
+<<<<<<< HEAD
+=======
+#include <stddef.h>
+
+#if defined(__STM32F1__) || defined(STM32F1)
+  #define DASH_REDRAW 1
+#endif
+>>>>>>> bugfix-2.1.x
 
 #define Def_Background_Color  RGB( 1, 12,  8)
 #define Def_Cursor_color      RGB(20, 49, 31)
@@ -65,6 +83,7 @@
 #define Def_Indicator_Color   Color_White
 #define Def_Coordinate_Color  Color_White
 #define Def_Button_Color      RGB( 0, 23, 16)
+<<<<<<< HEAD
 
 #define HAS_ESDIAG 1
 
@@ -73,6 +92,10 @@
 #endif
 #if ENABLED(CASELIGHT_USES_BRIGHTNESS)
   #define Def_CaseLight_Brightness 255
+=======
+#if BOTH(LED_CONTROL_MENU, HAS_COLOR_LEDS)
+  #define Def_Leds_Color      LEDColorWhite()
+>>>>>>> bugfix-2.1.x
 #endif
 
 typedef struct {
@@ -115,12 +138,21 @@ typedef struct {
     bool Baud115K = false;
   #endif
   bool FullManualTramming = false;
+<<<<<<< HEAD
   // Led
   #if ENABLED(MESH_BED_LEVELING)
     float ManualZOffset = 0;
   #endif
   #if BOTH(LED_CONTROL_MENU, HAS_COLOR_LEDS)
     uint32_t LED_Color = Def_Leds_Color;
+=======
+  #if ENABLED(MESH_BED_LEVELING)
+    float ManualZOffset = 0;
+  #endif
+  // Led
+  #if BOTH(LED_CONTROL_MENU, HAS_COLOR_LEDS)
+    LEDColor Led_Color = Def_Leds_Color;
+>>>>>>> bugfix-2.1.x
   #endif
 } HMI_data_t;
 

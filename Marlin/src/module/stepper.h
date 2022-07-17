@@ -444,6 +444,7 @@ class Stepper {
     // Current stepper motor directions (+1 or -1)
     static xyze_int8_t count_direction;
 
+<<<<<<< HEAD
     #if ENABLED(LASER_POWER_INLINE_TRAPEZOID)
 
       typedef struct {
@@ -463,6 +464,8 @@ class Stepper {
 
     #endif
 
+=======
+>>>>>>> bugfix-2.1.x
   public:
     // Initialize stepper hardware
     static void init();
@@ -524,8 +527,7 @@ class Stepper {
     // Discard current block and free any resources
     FORCE_INLINE static void discard_current_block() {
       #if ENABLED(DIRECT_STEPPING)
-        if (IS_PAGE(current_block))
-          page_manager.free_page(current_block->page_idx);
+        if (current_block->is_page()) page_manager.free_page(current_block->page_idx);
       #endif
       current_block = nullptr;
       axis_did_move = 0;

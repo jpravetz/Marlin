@@ -79,6 +79,13 @@
   #define SERVO_DELAY { 50 }
 #endif
 
+<<<<<<< HEAD
+=======
+#if !HAS_STOWABLE_PROBE
+  #undef PROBE_DEPLOY_STOW_MENU
+#endif
+
+>>>>>>> bugfix-2.1.x
 #if !HAS_EXTRUDERS
   #define NO_VOLUMETRICS
   #undef TEMP_SENSOR_0
@@ -556,6 +563,7 @@
   #endif
 #endif
 
+<<<<<<< HEAD
 // Probe Temperature Compensation
 #if !TEMP_SENSOR_PROBE
   #undef PTC_PROBE
@@ -566,6 +574,8 @@
 #if !HAS_EXTRUDERS
   #undef PTC_HOTEND
 #endif
+=======
+>>>>>>> bugfix-2.1.x
 #if ANY(PTC_PROBE, PTC_BED, PTC_HOTEND)
   #define HAS_PTC 1
 #endif
@@ -587,6 +597,13 @@
   #define HAS_PRINT_PROGRESS 1
 #endif
 
+<<<<<<< HEAD
+=======
+#if ANY(HAS_MARLINUI_MENU, ULTIPANEL_FEEDMULTIPLY, SOFT_RESET_ON_KILL)
+  #define HAS_ENCODER_ACTION 1
+#endif
+
+>>>>>>> bugfix-2.1.x
 #if STATUS_MESSAGE_TIMEOUT_SEC > 0
   #define HAS_STATUS_MESSAGE_TIMEOUT 1
 #endif

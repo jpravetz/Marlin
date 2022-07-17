@@ -549,6 +549,7 @@ void home_if_needed(const bool keeplev=false);
   #endif
 
   // Return true if the given point is within the printable area
+<<<<<<< HEAD
   inline bool position_is_reachable(const_float_t rx, const_float_t ry, const float inset=0) {
     #if ENABLED(DELTA)
 
@@ -584,28 +585,23 @@ void home_if_needed(const bool keeplev=false);
 
     #endif
   }
+=======
+  bool position_is_reachable(const_float_t rx, const_float_t ry, const float inset=0);
+>>>>>>> bugfix-2.1.x
 
   inline bool position_is_reachable(const xy_pos_t &pos, const float inset=0) {
     return position_is_reachable(pos.x, pos.y, inset);
   }
 
-#else // CARTESIAN
+#else
 
   // Return true if the given position is within the machine bounds.
-  inline bool position_is_reachable(const_float_t rx, const_float_t ry) {
-    if (!COORDINATE_OKAY(ry, Y_MIN_POS - fslop, Y_MAX_POS + fslop)) return false;
-    #if ENABLED(DUAL_X_CARRIAGE)
-      if (active_extruder)
-        return COORDINATE_OKAY(rx, X2_MIN_POS - fslop, X2_MAX_POS + fslop);
-      else
-        return COORDINATE_OKAY(rx, X1_MIN_POS - fslop, X1_MAX_POS + fslop);
-    #else
-      return COORDINATE_OKAY(rx, X_MIN_POS - fslop, X_MAX_POS + fslop);
-    #endif
+  bool position_is_reachable(const_float_t rx, const_float_t ry);
+  inline bool position_is_reachable(const xy_pos_t &pos) {
+    return position_is_reachable(pos.x, pos.y);
   }
-  inline bool position_is_reachable(const xy_pos_t &pos) { return position_is_reachable(pos.x, pos.y); }
 
-#endif // CARTESIAN
+#endif
 
 /**
  * Duplication mode

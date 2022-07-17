@@ -55,11 +55,7 @@
   #include "../../lcd/e3v2/proui/dwin.h"
 #endif
 
-#if HAS_L64XX                         // set L6470 absolute position registers to counts
-  #include "../../libs/L64XX/L64XX_Marlin.h"
-#endif
-
-#if ENABLED(LASER_MOVE_G28_OFF)
+#if ENABLED(LASER_FEATURE)
   #include "../../feature/spindle_laser.h"
 #endif
 
@@ -169,7 +165,11 @@
       motion_state.jerk_state = planner.max_jerk;
       planner.max_jerk.set(0, 0 OPTARG(DELTA, 0));
     #endif
+<<<<<<< HEAD
     planner.reset_acceleration_rates();
+=======
+    planner.refresh_acceleration_rates();
+>>>>>>> bugfix-2.1.x
     return motion_state;
   }
 
@@ -178,7 +178,11 @@
     planner.settings.max_acceleration_mm_per_s2[Y_AXIS] = motion_state.acceleration.y;
     TERN_(DELTA, planner.settings.max_acceleration_mm_per_s2[Z_AXIS] = motion_state.acceleration.z);
     TERN_(HAS_CLASSIC_JERK, planner.max_jerk = motion_state.jerk_state);
+<<<<<<< HEAD
     planner.reset_acceleration_rates();
+=======
+    planner.refresh_acceleration_rates();
+>>>>>>> bugfix-2.1.x
   }
 
 #endif // IMPROVE_HOMING_RELIABILITY
@@ -205,7 +209,16 @@ void GcodeSuite::G28() {
   DEBUG_SECTION(log_G28, "G28", DEBUGGING(LEVELING));
   if (DEBUGGING(LEVELING)) log_machine_info();
 
+<<<<<<< HEAD
   TERN_(LASER_MOVE_G28_OFF, cutter.set_inline_enabled(false));  // turn off laser
+=======
+  /*
+   * Set the laser power to false to stop the planner from processing the current power setting.
+   */
+  #if ENABLED(LASER_FEATURE)
+    planner.laser_inline.status.isPowered = false;
+  #endif
+>>>>>>> bugfix-2.1.x
 
   #if ENABLED(DUAL_X_CARRIAGE)
     bool IDEX_saved_duplication_state = extruder_duplication_enabled;
@@ -596,6 +609,7 @@ void GcodeSuite::G28() {
 
   TERN_(FULL_REPORT_TO_HOST_FEATURE, set_and_report_grblstate(old_grblstate));
 
+<<<<<<< HEAD
   #if HAS_L64XX
     // Set L6470 absolute position registers to counts
     // constexpr *might* move this to PROGMEM.
@@ -612,4 +626,6 @@ void GcodeSuite::G28() {
       L64xxManager.set_param((L64XX_axis_t)cv, L6470_ABS_POS, stepper.position(L64XX_axis_xref[cv]));
     }
   #endif
+=======
+>>>>>>> bugfix-2.1.x
 }

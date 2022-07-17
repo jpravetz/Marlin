@@ -35,8 +35,13 @@
   #warning "WARNING! Disable MARLIN_DEV_MODE for the final build!"
 #endif
 
+<<<<<<< HEAD
 #if LINEAR_AXES_WARNING
   #warning "Note: LINEAR_AXES is now based on the *_DRIVER_TYPE settings so you can remove LINEAR_AXES from Configuration.h."
+=======
+#if NUM_AXES_WARNING
+  #warning "Note: NUM_AXES is now based on the *_DRIVER_TYPE settings so you can remove NUM_AXES from Configuration.h."
+>>>>>>> bugfix-2.1.x
 #endif
 
 // Safety Features

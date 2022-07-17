@@ -254,6 +254,10 @@ namespace Language_en {
   LSTR MSG_UBL_SMART_FILLIN               = _UxGT("Smart Fill-in");
   LSTR MSG_UBL_FILLIN_MESH                = _UxGT("Fill-in Mesh");
   LSTR MSG_UBL_MESH_FILLED                = _UxGT("Missing Points Filled");
+<<<<<<< HEAD
+=======
+  LSTR MSG_UBL_MESH_INVALID               = _UxGT("Invalid Mesh");
+>>>>>>> bugfix-2.1.x
   LSTR MSG_UBL_INVALIDATE_ALL             = _UxGT("Invalidate All");
   LSTR MSG_UBL_INVALIDATE_CLOSEST         = _UxGT("Invalidate Closest");
   LSTR MSG_UBL_FINE_TUNE_ALL              = _UxGT("Fine Tune All");
@@ -309,7 +313,11 @@ namespace Language_en {
   LSTR MSG_MOVE_Z                         = _UxGT("Move Z");
   LSTR MSG_MOVE_N                         = _UxGT("Move @");
   LSTR MSG_MOVE_E                         = _UxGT("Move Extruder");
+<<<<<<< HEAD
   LSTR MSG_MOVE_EN                        = _UxGT("Move E*");
+=======
+  LSTR MSG_MOVE_EN                        = _UxGT("Move *");
+>>>>>>> bugfix-2.1.x
   LSTR MSG_HOTEND_TOO_COLD                = _UxGT("Hotend too cold");
   LSTR MSG_MOVE_N_MM                      = _UxGT("Move $mm");
   LSTR MSG_MOVE_01MM                      = _UxGT("Move 0.1mm");

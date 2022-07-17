@@ -46,13 +46,23 @@
 
 #ifdef DWIN_LCD_PROUI
 
+<<<<<<< HEAD
+=======
+#include "dwin_defines.h"
+
+#if HAS_PIDPLOT
+
+>>>>>>> bugfix-2.1.x
 #include "plot.h"
 
 #include "../../../core/types.h"
 #include "../../marlinui.h"
 #include "dwin_lcd.h"
 #include "dwinui.h"
+<<<<<<< HEAD
 #include "dwin_popup.h"
+=======
+>>>>>>> bugfix-2.1.x
 #include "dwin.h"
 
 #define Plot_Bg_Color RGB( 1, 12,  8)
@@ -71,7 +81,11 @@ void PlotClass::Draw(const frame_rect_t frame, const float max, const float ref)
   y2 = frame.y + frame.h - 1;
   r = round((y2) - ref * scale);
   DWINUI::Draw_Box(1, Plot_Bg_Color, frame);
+<<<<<<< HEAD
   for (uint8_t i = 1; i < 4; i++)  if (i*50 < frame.w) DWIN_Draw_VLine(Line_Color, i*50 + frame.x, frame.y, frame.h);
+=======
+  for (uint8_t i = 1; i < 4; i++)  if (i * 50 < frame.w) DWIN_Draw_VLine(Line_Color, i * 50 + frame.x, frame.y, frame.h);
+>>>>>>> bugfix-2.1.x
   DWINUI::Draw_Box(0, Color_White, DWINUI::ExtendFrame(frame, 1));
   DWIN_Draw_HLine(Color_Red, frame.x, r, frame.w);
 }
@@ -91,4 +105,9 @@ void PlotClass::Update(const float value) {
   grphpoints++;
 }
 
+<<<<<<< HEAD
+=======
+#endif // HAS_PIDPLOT
+
+>>>>>>> bugfix-2.1.x
 #endif // DWIN_LCD_PROUI

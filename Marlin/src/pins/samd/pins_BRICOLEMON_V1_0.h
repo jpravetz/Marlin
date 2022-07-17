@@ -218,6 +218,7 @@
  *      BTN_ENCODER 40
  */
 
+<<<<<<< HEAD
 #define EXP1_03_PIN                           39
 #define EXP1_04_PIN                           38
 #define EXP1_05_PIN                           37
@@ -245,6 +246,35 @@
   #define EXP3_08_PIN                EXP1_08_PIN
   #define EXP3_09_PIN                EXP1_09_PIN
   #define EXP3_10_PIN                EXP1_10_PIN
+=======
+#define EXP1_08_PIN                           39
+#define EXP1_07_PIN                           38
+#define EXP1_06_PIN                           37
+#define EXP1_05_PIN                           36
+#define EXP1_04_PIN                           34
+#define EXP1_03_PIN                           35
+#define EXP1_02_PIN                           40
+#define EXP1_01_PIN                           41
+
+#define EXP2_10_PIN                           49
+#define EXP2_07_PIN                           44
+#define EXP2_06_PIN                           51
+#define EXP2_05_PIN                           42
+#define EXP2_04_PIN                           53
+#define EXP2_03_PIN                           43
+#define EXP2_02_PIN                           52
+#define EXP2_01_PIN                           50
+
+#if ENABLED(CR10_STOCKDISPLAY)
+  #define EXP3_03_PIN                EXP1_08_PIN
+  #define EXP3_04_PIN                EXP1_07_PIN
+  #define EXP3_05_PIN                EXP1_06_PIN
+  #define EXP3_06_PIN                EXP1_05_PIN
+  #define EXP3_07_PIN                EXP1_04_PIN
+  #define EXP3_08_PIN                EXP1_03_PIN
+  #define EXP3_09_PIN                EXP1_02_PIN
+  #define EXP3_10_PIN                EXP1_01_PIN
+>>>>>>> bugfix-2.1.x
 #endif
 
 /************************************/
@@ -275,30 +305,53 @@
     #endif
 
     // DWIN Encoder
+<<<<<<< HEAD
     #define BTN_ENC                  EXP1_09_PIN
     #define BTN_EN1                  EXP1_08_PIN
     #define BTN_EN2                  EXP1_07_PIN
 
     #ifndef BEEPER_PIN
       #define BEEPER_PIN             EXP1_10_PIN
+=======
+    #define BTN_ENC                  EXP1_02_PIN
+    #define BTN_EN1                  EXP1_03_PIN
+    #define BTN_EN2                  EXP1_04_PIN
+
+    #ifndef BEEPER_PIN
+      #define BEEPER_PIN             EXP1_01_PIN
+>>>>>>> bugfix-2.1.x
       #undef SPEAKER
     #endif
 
   #elif ENABLED(REPRAPWORLD_GRAPHICAL_LCD)
 
     // TO TEST
+<<<<<<< HEAD
     //#define LCD_PINS_RS            EXP2_01_PIN  // CS chip select /SS chip slave select
     //#define LCD_PINS_ENABLE        EXP2_05_PIN  // SID (MOSI)
     //#define LCD_PINS_D4            EXP2_09_PIN  // SCK (CLK) clock
+=======
+    //#define LCD_PINS_RS            EXP2_10_PIN  // CS chip select /SS chip slave select
+    //#define LCD_PINS_ENABLE        EXP2_06_PIN  // SID (MOSI)
+    //#define LCD_PINS_D4            EXP2_02_PIN  // SCK (CLK) clock
+>>>>>>> bugfix-2.1.x
 
   #elif BOTH(IS_NEWPANEL, PANEL_ONE)
 
     // TO TEST
+<<<<<<< HEAD
     //#define LCD_PINS_RS            EXP1_09_PIN
     //#define LCD_PINS_ENABLE        EXP2_06_PIN
     //#define LCD_PINS_D4                     57  // Mega/Due:65 - AGCM4:57
     //#define LCD_PINS_D5                     58  // Mega/Due:66 - AGCM4:58
     //#define LCD_PINS_D6            EXP2_04_PIN
+=======
+    //#define LCD_PINS_RS            EXP1_02_PIN
+    //#define LCD_PINS_ENABLE        EXP2_05_PIN
+    //#define LCD_PINS_D4                     57  // Mega/Due:65 - AGCM4:57
+    //#define LCD_PINS_D5                     58  // Mega/Due:66 - AGCM4:58
+    //#define LCD_PINS_D6            EXP2_07_PIN
+>>>>>>> bugfix-2.1.x
     //#define LCD_PINS_D7                     56  // Mega/Due:64 - AGCM4:56
 
   #else
@@ -319,10 +372,17 @@
 
       // TO TEST
       //#define LCD_PINS_RS                   56  // Mega/Due:64 - AGCM4:56
+<<<<<<< HEAD
       //#define LCD_PINS_ENABLE      EXP2_04_PIN
       //#define LCD_PINS_D4                   55  // Mega/Due:63 - AGCM4:55
       //#define LCD_PINS_D5          EXP1_09_PIN
       //#define LCD_PINS_D6          EXP2_06_PIN
+=======
+      //#define LCD_PINS_ENABLE      EXP2_07_PIN
+      //#define LCD_PINS_D4                   55  // Mega/Due:63 - AGCM4:55
+      //#define LCD_PINS_D5          EXP1_02_PIN
+      //#define LCD_PINS_D6          EXP2_05_PIN
+>>>>>>> bugfix-2.1.x
       //#define LCD_PINS_D7                   57  // Mega/Due:65 - AGCM4:57
 
     #else
@@ -339,6 +399,7 @@
 
       #else
         // Definitions for any standard Display
+<<<<<<< HEAD
         #define LCD_PINS_RS          EXP1_07_PIN
         #define LCD_PINS_ENABLE      EXP1_08_PIN
         #define LCD_PINS_D4          EXP1_06_PIN
@@ -350,6 +411,19 @@
 
       #if !IS_NEWPANEL
         #define BEEPER_PIN           EXP1_10_PIN
+=======
+        #define LCD_PINS_RS          EXP1_04_PIN
+        #define LCD_PINS_ENABLE      EXP1_03_PIN
+        #define LCD_PINS_D4          EXP1_05_PIN
+        #define LCD_PINS_D5          EXP1_06_PIN
+        #define LCD_PINS_D6          EXP1_07_PIN
+      #endif
+
+      #define LCD_PINS_D7            EXP1_08_PIN
+
+      #if !IS_NEWPANEL
+        #define BEEPER_PIN           EXP1_01_PIN
+>>>>>>> bugfix-2.1.x
       #endif
 
     #endif
@@ -357,9 +431,15 @@
     #if !IS_NEWPANEL
       // Buttons attached to a shift register
       // Not wired yet
+<<<<<<< HEAD
       //#define SHIFT_CLK_PIN        EXP1_04_PIN
       //#define SHIFT_LD_PIN         EXP2_06_PIN
       //#define SHIFT_OUT_PIN        EXP1_09_PIN
+=======
+      //#define SHIFT_CLK_PIN        EXP1_07_PIN
+      //#define SHIFT_LD_PIN         EXP2_05_PIN
+      //#define SHIFT_OUT_PIN        EXP1_02_PIN
+>>>>>>> bugfix-2.1.x
       //#define SHIFT_EN_PIN                  17
     #endif
 
@@ -372,6 +452,7 @@
 
     #if IS_RRD_SC
 
+<<<<<<< HEAD
       #define BEEPER_PIN             EXP1_10_PIN
 
       #if ENABLED(CR10_STOCKDISPLAY)
@@ -382,11 +463,24 @@
         // Definitions fpr any standard Display
         #define BTN_EN1              EXP2_06_PIN
         #define BTN_EN2              EXP2_08_PIN
+=======
+      #define BEEPER_PIN             EXP1_01_PIN
+
+      #if ENABLED(CR10_STOCKDISPLAY)
+        // TO TEST
+        #define BTN_EN1              EXP1_03_PIN
+        #define BTN_EN2              EXP1_05_PIN
+      #else
+        // Definitions fpr any standard Display
+        #define BTN_EN1              EXP2_05_PIN
+        #define BTN_EN2              EXP2_03_PIN
+>>>>>>> bugfix-2.1.x
         #if ENABLED(REPRAP_DISCOUNT_FULL_GRAPHIC_SMART_CONTROLLER)
           #define BTN_ENC_EN         LCD_PINS_D7  // Detect the presence of the encoder
         #endif
       #endif
 
+<<<<<<< HEAD
       #define BTN_ENC                EXP1_09_PIN
       #ifndef SD_DETECT_PIN
         #define SD_DETECT_PIN        EXP2_04_PIN
@@ -395,6 +489,16 @@
 
       #if ENABLED(BQ_LCD_SMART_CONTROLLER)
         //#define LCD_BACKLIGHT_PIN  EXP1_03_PIN  // TO TEST
+=======
+      #define BTN_ENC                EXP1_02_PIN
+      #ifndef SD_DETECT_PIN
+        #define SD_DETECT_PIN        EXP2_07_PIN
+      #endif
+      #define KILL_PIN               EXP2_10_PIN
+
+      #if ENABLED(BQ_LCD_SMART_CONTROLLER)
+        //#define LCD_BACKLIGHT_PIN  EXP1_08_PIN  // TO TEST
+>>>>>>> bugfix-2.1.x
       #endif
 
     #elif ENABLED(REPRAPWORLD_GRAPHICAL_LCD)
@@ -403,20 +507,32 @@
       //#define BTN_EN1                       56  // Mega/Due:64 - AGCM4:56
       //#define BTN_EN2                       72  // Mega/Due:59 - AGCM4:72
       //#define BTN_ENC                       55
+<<<<<<< HEAD
       //#define SD_DETECT_PIN        EXP2_06_PIN
+=======
+      //#define SD_DETECT_PIN        EXP2_05_PIN
+>>>>>>> bugfix-2.1.x
 
     #elif ENABLED(LCD_I2C_PANELOLU2)
 
       // TO TEST
       //#define BTN_EN1                       47
+<<<<<<< HEAD
       //#define BTN_EN2              EXP2_08_PIN
       //#define BTN_ENC                       32
       //#define LCD_SDSS                    SDSS
       //#define KILL_PIN             EXP1_10_PIN
+=======
+      //#define BTN_EN2              EXP2_03_PIN
+      //#define BTN_ENC                       32
+      //#define LCD_SDSS                    SDSS
+      //#define KILL_PIN             EXP1_01_PIN
+>>>>>>> bugfix-2.1.x
 
     #elif ENABLED(LCD_I2C_VIKI)
 
       // TO TEST
+<<<<<<< HEAD
       //#define BTN_EN1              EXP1_09_PIN  // https://files.panucatt.com/datasheets/viki_wiring_diagram.pdf explains 40/42.
       //#define BTN_EN2              EXP2_06_PIN
       //#define BTN_ENC                       -1
@@ -429,15 +545,37 @@
       // TO TEST
       //#define DOGLCD_CS                     45
       //#define DOGLCD_A0            EXP2_04_PIN
+=======
+      //#define BTN_EN1              EXP1_02_PIN  // https://files.panucatt.com/datasheets/viki_wiring_diagram.pdf explains 40/42.
+      //#define BTN_EN2              EXP2_05_PIN
+      //#define BTN_ENC                       -1
+
+      //#define LCD_SDSS                    SDSS
+      //#define SD_DETECT_PIN        EXP2_10_PIN
+
+    #elif EITHER(VIKI2, miniVIKI)
+
+      // TO TEST
+      //#define DOGLCD_CS                     45
+      //#define DOGLCD_A0            EXP2_07_PIN
+>>>>>>> bugfix-2.1.x
       //#define LCD_SCREEN_ROT_180
 
       //#define BEEPER_PIN                    33
       //#define STAT_LED_RED_PIN              32
+<<<<<<< HEAD
       //#define STAT_LED_BLUE_PIN    EXP1_08_PIN
 
       //#define BTN_EN1                       22
       //#define BTN_EN2                        7
       //#define BTN_ENC              EXP1_03_PIN
+=======
+      //#define STAT_LED_BLUE_PIN    EXP1_03_PIN
+
+      //#define BTN_EN1                       22
+      //#define BTN_EN2                        7
+      //#define BTN_ENC              EXP1_08_PIN
+>>>>>>> bugfix-2.1.x
 
       //#define SD_DETECT_PIN                 -1  // Pin 49 for display SD interface, 72 for easy adapter board
       //#define KILL_PIN                      31
@@ -451,6 +589,7 @@
       //#define BEEPER_PIN                    23
       //#define LCD_BACKLIGHT_PIN             33
 
+<<<<<<< HEAD
       //#define BTN_EN1              EXP1_08_PIN
       //#define BTN_EN2              EXP1_05_PIN
       //#define BTN_ENC                       31
@@ -458,16 +597,34 @@
       //#define LCD_SDSS                    SDSS
       //#define SD_DETECT_PIN        EXP2_01_PIN
       //#define KILL_PIN             EXP1_10_PIN
+=======
+      //#define BTN_EN1              EXP1_03_PIN
+      //#define BTN_EN2              EXP1_06_PIN
+      //#define BTN_ENC                       31
+
+      //#define LCD_SDSS                    SDSS
+      //#define SD_DETECT_PIN        EXP2_10_PIN
+      //#define KILL_PIN             EXP1_01_PIN
+>>>>>>> bugfix-2.1.x
 
     #elif EITHER(MKS_MINI_12864, FYSETC_MINI_12864)
 
       // TO TEST
+<<<<<<< HEAD
       //#define BEEPER_PIN           EXP1_05_PIN
       //#define BTN_ENC              EXP1_08_PIN
       //#define SD_DETECT_PIN        EXP2_01_PIN
 
       //#ifndef KILL_PIN
       //  #define KILL_PIN           EXP1_10_PIN
+=======
+      //#define BEEPER_PIN           EXP1_06_PIN
+      //#define BTN_ENC              EXP1_03_PIN
+      //#define SD_DETECT_PIN        EXP2_10_PIN
+
+      //#ifndef KILL_PIN
+      //  #define KILL_PIN           EXP1_01_PIN
+>>>>>>> bugfix-2.1.x
       //#endif
 
       #if ENABLED(MKS_MINI_12864)
@@ -527,11 +684,19 @@
     #elif ENABLED(MINIPANEL)
 
       // TO TEST
+<<<<<<< HEAD
       //#define BEEPER_PIN           EXP2_06_PIN
       // not connected to a pin
       //#define LCD_BACKLIGHT_PIN             57  // backlight LED on A11/D? (Mega/Due:65 - AGCM4:57)
 
       //#define DOGLCD_A0            EXP2_04_PIN
+=======
+      //#define BEEPER_PIN           EXP2_05_PIN
+      // not connected to a pin
+      //#define LCD_BACKLIGHT_PIN             57  // backlight LED on A11/D? (Mega/Due:65 - AGCM4:57)
+
+      //#define DOGLCD_A0            EXP2_07_PIN
+>>>>>>> bugfix-2.1.x
       //#define DOGLCD_CS                     58  // Mega/Due:66 - AGCM4:58
 
       // GLCD features
@@ -540,11 +705,19 @@
       //#define LCD_SCREEN_ROT_180
       //#define LCD_SCREEN_ROT_270
 
+<<<<<<< HEAD
       //#define BTN_EN1              EXP1_09_PIN
       //#define BTN_EN2                       55  // Mega/Due:63 - AGCM4:55
       //#define BTN_ENC                       72  // Mega/Due:59 - AGCM4:72
 
       //#define SD_DETECT_PIN        EXP2_01_PIN
+=======
+      //#define BTN_EN1              EXP1_02_PIN
+      //#define BTN_EN2                       55  // Mega/Due:63 - AGCM4:55
+      //#define BTN_ENC                       72  // Mega/Due:59 - AGCM4:72
+
+      //#define SD_DETECT_PIN        EXP2_10_PIN
+>>>>>>> bugfix-2.1.x
       //#define KILL_PIN                      56  // Mega/Due:64 - AGCM4:56
 
     #elif ENABLED(ZONESTAR_LCD)
@@ -564,9 +737,15 @@
       // Buttons are directly attached to AUX-2
       #if IS_RRW_KEYPAD
         // TO TEST
+<<<<<<< HEAD
         //#define SHIFT_OUT_PIN      EXP1_09_PIN
         //#define SHIFT_CLK_PIN      EXP2_04_PIN
         //#define SHIFT_LD_PIN       EXP2_06_PIN
+=======
+        //#define SHIFT_OUT_PIN      EXP1_02_PIN
+        //#define SHIFT_CLK_PIN      EXP2_07_PIN
+        //#define SHIFT_LD_PIN       EXP2_05_PIN
+>>>>>>> bugfix-2.1.x
         //#define BTN_EN1                     56  // Mega/Due:64 - AGCM4:56
         //#define BTN_EN2                     72  // Mega/Due:59 - AGCM4:72
         //#define BTN_ENC                     55  // Mega/Due:63 - AGCM4:55
@@ -574,18 +753,31 @@
         // TO TEST
         //#define BTN_EN1                     72  // AUX2 PIN 3 (Mega/Due:59 - AGCM4:72)
         //#define BTN_EN2                     55  // AUX2 PIN 4 (Mega/Due:63 - AGCM4:55)
+<<<<<<< HEAD
         //#define BTN_ENC            EXP2_01_PIN  // AUX3 PIN 7
       #else
         // TO TEST
         //#define BTN_EN1            EXP1_05_PIN
         //#define BTN_EN2            EXP1_08_PIN
+=======
+        //#define BTN_ENC            EXP2_10_PIN  // AUX3 PIN 7
+      #else
+        // TO TEST
+        //#define BTN_EN1            EXP1_06_PIN
+        //#define BTN_EN2            EXP1_03_PIN
+>>>>>>> bugfix-2.1.x
         //#define BTN_ENC                     31
       #endif
 
       #if ENABLED(G3D_PANEL)
         // TO TEST
+<<<<<<< HEAD
         //#define SD_DETECT_PIN      EXP2_01_PIN
         //#define KILL_PIN           EXP1_10_PIN
+=======
+        //#define SD_DETECT_PIN      EXP2_10_PIN
+        //#define KILL_PIN           EXP1_01_PIN
+>>>>>>> bugfix-2.1.x
       #endif
 
     #endif
@@ -616,7 +808,11 @@
   #undef SD_DETECT_PIN
   #define SD_DETECT_PIN                       95
 #else
+<<<<<<< HEAD
   #define SDSS                       EXP2_07_PIN
+=======
+  #define SDSS                       EXP2_04_PIN
+>>>>>>> bugfix-2.1.x
 #endif
 
 #if HAS_TMC_UART

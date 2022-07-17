@@ -76,8 +76,12 @@
   #include "../lcd/extui/ui_api.h"
 #elif ENABLED(DWIN_LCD_PROUI)
   #include "../lcd/e3v2/proui/dwin.h"
+<<<<<<< HEAD
 #elif ENABLED(DWIN_CREALITY_LCD_JYERSUI)
   #include "../lcd/e3v2/jyersui/dwin.h"
+=======
+  #include "../lcd/e3v2/proui/bedlevel_tools.h"
+>>>>>>> bugfix-2.1.x
 #endif
 
 #if ENABLED(HOST_PROMPT_SUPPORT)
@@ -502,8 +506,11 @@ typedef struct SettingsDataStruct {
   //
   #if ENABLED(DWIN_LCD_PROUI)
     uint8_t dwin_data[eeprom_data_size];
+<<<<<<< HEAD
   #elif ENABLED(DWIN_CREALITY_LCD_JYERSUI)
     uint8_t dwin_settings[CrealityDWIN.eeprom_data_size];
+=======
+>>>>>>> bugfix-2.1.x
   #endif
 
   //
@@ -592,7 +599,7 @@ void MarlinSettings::postprocess() {
   xyze_pos_t oldpos = current_position;
 
   // steps per s2 needs to be updated to agree with units per s2
-  planner.reset_acceleration_rates();
+  planner.refresh_acceleration_rates();
 
   // Make sure delta kinematics are updated before refreshing the
   // planner position so the stepper counts will be set correctly.
@@ -1520,6 +1527,7 @@ void MarlinSettings::postprocess() {
       DWIN_CopySettingsTo(dwin_data);
       EEPROM_WRITE(dwin_data);
     }
+<<<<<<< HEAD
     #endif
 
     #if ENABLED(DWIN_CREALITY_LCD_JYERSUI)
@@ -1529,6 +1537,8 @@ void MarlinSettings::postprocess() {
       CrealityDWIN.Save_Settings(dwin_settings);
       EEPROM_WRITE(dwin_settings);
     }
+=======
+>>>>>>> bugfix-2.1.x
     #endif
 
     //
@@ -2495,6 +2505,7 @@ void MarlinSettings::postprocess() {
         EEPROM_READ(dwin_data);
         if (!validating) DWIN_CopySettingsFrom(dwin_data);
       }
+<<<<<<< HEAD
       #elif ENABLED(DWIN_CREALITY_LCD_JYERSUI)
       {
         const char dwin_settings[CrealityDWIN.eeprom_data_size] = { 0 };
@@ -2502,6 +2513,8 @@ void MarlinSettings::postprocess() {
         EEPROM_READ(dwin_settings);
         if (!validating) CrealityDWIN.Load_Settings(dwin_settings);
       }
+=======
+>>>>>>> bugfix-2.1.x
       #endif
 
       //
@@ -2776,7 +2789,7 @@ void MarlinSettings::postprocess() {
         #endif
 
         persistentStore.access_start();
-        const uint16_t status = persistentStore.read_data(pos, dest, MESH_STORE_SIZE, &crc);
+        uint16_t status = persistentStore.read_data(pos, dest, MESH_STORE_SIZE, &crc);
         persistentStore.access_finish();
 
         #if ENABLED(OPTIMIZED_MESH_STORAGE)
@@ -2787,6 +2800,19 @@ void MarlinSettings::postprocess() {
           }
           else
             bedlevel.set_mesh_from_store(z_mesh_store, bedlevel.z_values);
+<<<<<<< HEAD
+=======
+        #endif
+
+        #if ENABLED(DWIN_LCD_PROUI)
+          status = !BedLevelTools.meshvalidate();
+          if (status) {
+            bedlevel.invalidate();
+            LCD_MESSAGE(MSG_UBL_MESH_INVALID);
+          }
+          else
+            ui.status_printf(0, GET_TEXT_F(MSG_MESH_LOADED), bedlevel.storage_slot);
+>>>>>>> bugfix-2.1.x
         #endif
 
         if (status) SERIAL_ECHOLNPGM("?Unable to load mesh data.");
@@ -2929,8 +2955,11 @@ void MarlinSettings::reset() {
     #endif
   #endif
 
+<<<<<<< HEAD
   TERN_(DWIN_CREALITY_LCD_JYERSUI, CrealityDWIN.Reset_Settings());
 
+=======
+>>>>>>> bugfix-2.1.x
   //
   // Case Light Brightness
   //

@@ -23,8 +23,13 @@
 /**
  * DWIN Enhanced implementation for PRO UI
  * Author: Miguel A. Risco-Castillo (MRISCOC)
+<<<<<<< HEAD
  * Version: 3.17.1
  * Date: 2022/04/12
+=======
+ * Version: 3.18.1
+ * Date: 2022/07/05
+>>>>>>> bugfix-2.1.x
  */
 
 #include "../../../inc/MarlinConfigPre.h"
@@ -44,7 +49,11 @@ uint16_t DWINUI::pencolor = Color_White;
 uint16_t DWINUI::textcolor = Def_Text_Color;
 uint16_t DWINUI::backcolor = Def_Background_Color;
 uint16_t DWINUI::buttoncolor = Def_Button_Color;
+<<<<<<< HEAD
 uint8_t  DWINUI::font = font8x16;
+=======
+uint8_t  DWINUI::fontid = font8x16;
+>>>>>>> bugfix-2.1.x
 FSTR_P const DWINUI::Author = F(STRING_CONFIG_H_AUTHOR);
 
 void (*DWINUI::onTitleDraw)(TitleClass* title) = nullptr;
@@ -62,6 +71,7 @@ void DWINUI::init() {
   textcolor = Def_Text_Color;
   backcolor = Def_Background_Color;
   buttoncolor = Def_Button_Color;
+<<<<<<< HEAD
   font = font8x16;
 }
 
@@ -73,6 +83,17 @@ void DWINUI::setFont(uint8_t cfont) {
 // Get font character width
 uint8_t DWINUI::fontWidth(uint8_t cfont) {
   switch (cfont) {
+=======
+  fontid = font8x16;
+}
+
+// Set text/number font
+void DWINUI::setFont(fontid_t fid) { fontid = fid; }
+
+// Get font character width
+uint8_t DWINUI::fontWidth(fontid_t fid) {
+  switch (fid) {
+>>>>>>> bugfix-2.1.x
     case font6x12 : return 6;
     case font8x16 : return 8;
     case font10x20: return 10;
@@ -88,8 +109,13 @@ uint8_t DWINUI::fontWidth(uint8_t cfont) {
 }
 
 // Get font character height
+<<<<<<< HEAD
 uint8_t DWINUI::fontHeight(uint8_t cfont) {
   switch (cfont) {
+=======
+uint8_t DWINUI::fontHeight(fontid_t fid) {
+  switch (fid) {
+>>>>>>> bugfix-2.1.x
     case font6x12 : return 12;
     case font8x16 : return 16;
     case font10x20: return 20;
@@ -105,6 +131,7 @@ uint8_t DWINUI::fontHeight(uint8_t cfont) {
 }
 
 // Get screen x coordinates from text column
+<<<<<<< HEAD
 uint16_t DWINUI::ColToX(uint8_t col) {
   return col * fontWidth(font);
 }
@@ -113,6 +140,12 @@ uint16_t DWINUI::ColToX(uint8_t col) {
 uint16_t DWINUI::RowToY(uint8_t row) {
   return row * fontHeight(font);
 }
+=======
+uint16_t DWINUI::ColToX(uint8_t col) { return col * fontWidth(fontid); }
+
+// Get screen y coordinates from text row
+uint16_t DWINUI::RowToY(uint8_t row) { return row * fontHeight(fontid); }
+>>>>>>> bugfix-2.1.x
 
 // Set text/number color
 void DWINUI::SetColors(uint16_t fgcolor, uint16_t bgcolor, uint16_t alcolor) {
@@ -152,9 +185,15 @@ void DWINUI::MoveBy(xy_int_t point) {
 }
 
 // Draw a Centered string using arbitrary x1 and x2 margins
+<<<<<<< HEAD
 void DWINUI::Draw_CenteredString(bool bShow, uint8_t size, uint16_t color, uint16_t bColor, uint16_t x1, uint16_t x2, uint16_t y, const char * const string) {
   const uint16_t x = _MAX(0U, x2 + x1 - strlen_P(string) * fontWidth(size)) / 2 - 1;
   DWIN_Draw_String(bShow, size, color, bColor, x, y, string);
+=======
+void DWINUI::Draw_CenteredString(bool bShow, fontid_t fid, uint16_t color, uint16_t bColor, uint16_t x1, uint16_t x2, uint16_t y, const char * const string) {
+  const uint16_t x = _MAX(0U, x2 + x1 - strlen_P(string) * fontWidth(fid)) / 2 - 1;
+  DWIN_Draw_String(bShow, fid, color, bColor, x, y, string);
+>>>>>>> bugfix-2.1.x
 }
 
 // Draw a char
@@ -164,13 +203,21 @@ void DWINUI::Draw_CenteredString(bool bShow, uint8_t size, uint16_t color, uint1
 //  c: ASCII code of char
 void DWINUI::Draw_Char(uint16_t color, uint16_t x, uint16_t y, const char c) {
   const char string[2] = { c, 0};
+<<<<<<< HEAD
   DWIN_Draw_String(false, font, color, backcolor, x, y, string, 1);
+=======
+  DWIN_Draw_String(false, fontid, color, backcolor, x, y, string, 1);
+>>>>>>> bugfix-2.1.x
 }
 
 // Draw a char at cursor position and increment cursor
 void DWINUI::Draw_Char(uint16_t color, const char c) {
   Draw_Char(color, cursor.x, cursor.y, c);
+<<<<<<< HEAD
   MoveBy(fontWidth(font), 0);
+=======
+  MoveBy(fontWidth(fontid), 0);
+>>>>>>> bugfix-2.1.x
 }
 
 // Draw a string at cursor position
@@ -178,49 +225,83 @@ void DWINUI::Draw_Char(uint16_t color, const char c) {
 //  *string: The string
 //  rlimit: For draw less chars than string length use rlimit
 void DWINUI::Draw_String(const char * const string, uint16_t rlimit) {
+<<<<<<< HEAD
   DWIN_Draw_String(false, font, textcolor, backcolor, cursor.x, cursor.y, string, rlimit);
   MoveBy(strlen(string) * fontWidth(font), 0);
 }
 void DWINUI::Draw_String(uint16_t color, const char * const string, uint16_t rlimit) {
   DWIN_Draw_String(false, font, color, backcolor, cursor.x, cursor.y, string, rlimit);
   MoveBy(strlen(string) * fontWidth(font), 0);
+=======
+  DWIN_Draw_String(false, fontid, textcolor, backcolor, cursor.x, cursor.y, string, rlimit);
+  MoveBy(strlen(string) * fontWidth(fontid), 0);
+}
+void DWINUI::Draw_String(uint16_t color, const char * const string, uint16_t rlimit) {
+  DWIN_Draw_String(false, fontid, color, backcolor, cursor.x, cursor.y, string, rlimit);
+  MoveBy(strlen(string) * fontWidth(fontid), 0);
+>>>>>>> bugfix-2.1.x
 }
 
 // Draw a numeric integer value
 //  bShow: true=display background color; false=don't display background color
 //  signedMode: 1=signed; 0=unsigned
+<<<<<<< HEAD
 //  size: Font size
+=======
+//  fid: Font ID
+>>>>>>> bugfix-2.1.x
 //  color: Character color
 //  bColor: Background color
 //  iNum: Number of digits
 //  x/y: Upper-left coordinate
 //  value: Integer value
+<<<<<<< HEAD
 void DWINUI::Draw_Int(uint8_t bShow, bool signedMode, uint8_t size, uint16_t color, uint16_t bColor, uint8_t iNum, uint16_t x, uint16_t y, int32_t value) {
   char nstr[10];
   sprintf_P(nstr, PSTR("%*li"), (signedMode ? iNum + 1 : iNum), value);
   DWIN_Draw_String(bShow, size, color, bColor, x, y, nstr);
+=======
+void DWINUI::Draw_Int(uint8_t bShow, bool signedMode, fontid_t fid, uint16_t color, uint16_t bColor, uint8_t iNum, uint16_t x, uint16_t y, int32_t value) {
+  char nstr[10];
+  sprintf_P(nstr, PSTR("%*li"), (signedMode ? iNum + 1 : iNum), value);
+  DWIN_Draw_String(bShow, fid, color, bColor, x, y, nstr);
+>>>>>>> bugfix-2.1.x
 }
 
 // Draw a numeric float value
 //  bShow: true=display background color; false=don't display background color
 //  signedMode: 1=signed; 0=unsigned
+<<<<<<< HEAD
 //  size: Font size
+=======
+//  fid: Font ID
+>>>>>>> bugfix-2.1.x
 //  color: Character color
 //  bColor: Background color
 //  iNum: Number of digits
 //  fNum: Number of decimal digits
 //  x/y: Upper-left coordinate
 //  value: float value
+<<<<<<< HEAD
 void DWINUI::Draw_Float(uint8_t bShow, bool signedMode, uint8_t size, uint16_t color, uint16_t bColor, uint8_t iNum, uint8_t fNum, uint16_t x, uint16_t y, float value) {
   char nstr[10];
   DWIN_Draw_String(bShow, size, color, bColor, x, y, dtostrf(value, iNum + (signedMode ? 2:1) + fNum, fNum, nstr));
+=======
+void DWINUI::Draw_Float(uint8_t bShow, bool signedMode, fontid_t fid, uint16_t color, uint16_t bColor, uint8_t iNum, uint8_t fNum, uint16_t x, uint16_t y, float value) {
+  char nstr[10];
+  DWIN_Draw_String(bShow, fid, color, bColor, x, y, dtostrf(value, iNum + (signedMode ? 2:1) + fNum, fNum, nstr));
+>>>>>>> bugfix-2.1.x
 }
 
 // ------------------------- Buttons ------------------------------//
 
 void DWINUI::Draw_Button(uint16_t color, uint16_t bcolor, uint16_t x1, uint16_t y1, uint16_t x2, uint16_t y2, const char * const caption) {
   DWIN_Draw_Rectangle(1, bcolor, x1, y1, x2, y2);
+<<<<<<< HEAD
   Draw_CenteredString(0, font, color, bcolor, x1, x2, (y2 + y1 - fontHeight())/2, caption);
+=======
+  Draw_CenteredString(0, fontid, color, bcolor, x1, x2, (y2 + y1 - fontHeight())/2, caption);
+>>>>>>> bugfix-2.1.x
 }
 
 void DWINUI::Draw_Button(uint8_t id, uint16_t x, uint16_t y) {
